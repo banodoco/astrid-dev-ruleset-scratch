@@ -115,17 +115,21 @@ def touched(view: View, root: Path, base: str) -> bool:
     except subprocess.CalledProcessError as exc:
         raise ValueError(f"view {view.name}: cannot find merge base for {base}: {exc}") from exc
 
-    def region_content(text: str, revision: str) -> str:
+    def region_content(text: str, revision: str, *, baseline: bool = False) -> str | None:
         if not view.region:
             return text
         region = "vision-summary" if view.region is True else view.region
         start = f"<!-- {region}:start -->"
         end = f"<!-- {region}:end -->"
         if text.count(start) != 1 or text.count(end) != 1:
+            if baseline:
+                return None
             raise ValueError(f"view {view.name}: {view.target} must contain exactly one {start} and {end} marker pair ({revision})")
         before, remainder = text.split(start, 1)
         content, after = remainder.split(end, 1)
         if after.find(start) >= 0 or before.find(end) >= 0:
+            if baseline:
+                return None
             raise ValueError(f"view {view.name}: invalid {region} marker order in {view.target} ({revision})")
         return content
 
@@ -144,7 +148,9 @@ def touched(view: View, root: Path, base: str) -> bool:
             # Validate a present region even when the target is new.
             region_content(current, "working tree")
         return baseline != current
-    return region_content(baseline, merge_base) != region_content(current, "working tree")
+    baseline_content = region_content(baseline, merge_base, baseline=True)
+    current_content = region_content(current, "working tree")
+    return baseline_content is None or baseline_content != current_content
 
 
 def check_view(view: View, root: Path) -> list[str]:
@@ -188,12 +194,15 @@ def sync(root: Path) -> list[str]:
         targets.append(target)
 
     changed = []
+    changed_targets = set()
     for view, target in zip(VIEWS, targets):
         content = expected(view, root)
         target.parent.mkdir(parents=True, exist_ok=True)
         if not target.exists() or target.read_text(encoding="utf-8") != content:
             target.write_text(content, encoding="utf-8")
-            changed.append(view.target)
+            if view.target not in changed_targets:
+                changed.append(view.target)
+                changed_targets.add(view.target)
     return changed
 
 

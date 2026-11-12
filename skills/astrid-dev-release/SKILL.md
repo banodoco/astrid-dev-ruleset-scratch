@@ -67,6 +67,18 @@ A publish never turns a passing check red. On each promotion PR into a product `
 4. **Bring integration branches up to `main`.** Fast-forward each `int/<project>` to its `main` with `git push`, never forced. Cloud sessions can't write refs through the GitHub API.
 5. **Close the project** through [Manage](../astrid-dev-manage/SKILL.md)'s completion PR.
 
+**Patch release** (a small fix on top of the served release, without a full release cycle):
+- **What qualifies:** the served tuple plus a short, listed set of fix commits that change no contract. That means no Runtime protocol or schema change, no new user-facing feature, no generation or GPU path, and no pin change beyond the patched component. Anything else is a full release.
+- **Number and version:** the next integer, because `release-guard` requires +1 and installs only update to a higher number. The version is a **patch** (`0.0.N`, Plan 29 decision 7). If another release is in flight, the patch takes the next number and the in-flight release is renumbered. Its manager and the owner agree first. Or, if nobody needs the fix sooner, fold it into the in-flight release instead.
+- **Evidence:** change-directed, with the claim stated as usual.
+  1. Focused tests for the fix, shown failing on the served tuple.
+  2. The update rows from every published release (Plan 09 IU-15; until it exists, the matrix's update rows), plus one forced rollback.
+  3. The matrix rows for paths the fix touches.
+  4. The prescribed review of the fix range when it changes product code.
+
+  Evidence for components the patch doesn't change carries over from the release it patches, bound by SHA. List what was carried over and from which run.
+- **Publish** with steps 0–5 above, unchanged: owner's go in this session, merge order, deploy, canary.
+
 For product artifact preparation, follow the current product runbooks rather than copying their procedures here:
 
 - **Agent:** [reproducible release](https://github.com/banodoco/astrid-agent/blob/main/docs/runbooks/reproducible-release.md) and [release recipe](https://github.com/banodoco/astrid-agent/blob/main/docs/setup/release-recipe.md) own locks, toolchain, installed artifact, and paired-release receipts.

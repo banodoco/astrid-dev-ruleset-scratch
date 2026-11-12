@@ -54,7 +54,7 @@ The design keeps the concepts few:
 - **One tombstone list** for legacy product state, retired with version pruning.
 - **One gate** that updates from every published release, lived-in and hostile.
 
-IU-14 ships first, as a hotfix; then the gate (IU-15), before the refactor it protects (IU-18). [Phase 2 evidence](inputs.md#phase-2-upgrade-safe-installed-state).
+IU-14 ships first, in Release 13 (owner, 12 Nov); then the gate (IU-15), before the refactor it protects (IU-18). [Phase 2 evidence](inputs.md#phase-2-upgrade-safe-installed-state).
 
 ## Completion
 
