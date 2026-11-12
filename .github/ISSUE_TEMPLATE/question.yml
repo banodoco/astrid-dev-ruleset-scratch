@@ -1,0 +1,17 @@
+name: Question
+description: Ask the maintainers anything about Astrid. No keys, tokens or private paths.
+title: "question: "
+labels: ["question"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: Question
+      description: The question, in one or two sentences.
+    validations:
+      required: true
+  - type: input
+    id: about
+    attributes:
+      label: About
+      description: "A plan number or gap ID, if you know it. Leave empty if you are not sure."
