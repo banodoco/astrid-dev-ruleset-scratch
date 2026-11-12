@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
   push:
-    branches: [main]
+    branches: [main, hostile/no-if]
 
 permissions:
   contents: read
@@ -47,7 +47,6 @@ jobs:
         run: python3 scripts/astrid_dev.py check
 
   refresh-generated:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.GENERATED_REFRESH_APP_ID != ''
     needs: documentation
     runs-on: ubuntu-latest
     environment: generated-refresh
@@ -138,7 +137,6 @@ jobs:
           git add -- "${targets[@]}"
           echo "changed=true" >> "$GITHUB_OUTPUT"
       - name: Create dedicated refresh App token
-        if: steps.refresh.outputs.changed == 'true'
         id: refresh-token
         uses: actions/create-github-app-token@v2
         with:
