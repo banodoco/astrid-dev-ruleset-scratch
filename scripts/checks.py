@@ -5,6 +5,7 @@ from typing import Callable, Literal
 import json
 import re
 import sys
+import subprocess
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
@@ -306,12 +307,6 @@ def _public_vision(context):
     import export_public_vision
     try:
         page = export_public_vision.build(context.root, '0000000000000000000000000000000000000000')
-        expected = export_public_vision.render_readme(context.root, page)
-        if (context.root / 'vision/README.md').read_text(encoding='utf-8') != expected:
-            return ['public vision content: vision/README.md is stale; run python3 scripts/export_public_vision.py --sync-readme']
-        source = (context.root / 'README.md').read_text(encoding='utf-8')
-        if source != export_public_vision.render_root_readme(source, page):
-            return ['public vision content: README.md vision summary is stale; run python3 scripts/export_public_vision.py --sync-readme']
     except (ValueError, OSError) as exc:
         return [f'public vision content: {exc}']
     return []
@@ -319,7 +314,17 @@ def _public_vision(context):
 
 def _generated_views(context):
     import views
-    errors = views.check(context.root)
+    if not context.base:
+        return []
+    errors = []
+    for view in views.VIEWS:
+        try:
+            if views.touched(view, context.root, context.base):
+                errors.extend(views.check_view(view, context.root))
+        except (OSError, ValueError, subprocess.CalledProcessError) as exc:
+            errors.append(f'view {view.name}: cannot check {view.target}: {exc}; '
+                          f'{view.target} is generated from {", ".join(view.sources)}, so fix any error there, '
+                          'then run python3 scripts/astrid_dev.py sync')
     if _catalog(context):
         errors = [message for message in errors if not message.startswith(("view plan-catalog ", "view plan-catalog:"))]
     # The legacy public-vision rule owns diagnostics for these two targets.
@@ -459,8 +464,8 @@ REGISTRY: tuple[Check, ...] = (
     Check('obsolete-templates', 'always', 'Validate obsolete templates', _obsolete_templates),
     Check('ledger', 'always', 'Validate ledger', _ledger),
     Check('markdown-links', 'always', 'Validate markdown links', _markdown_links),
-    Check('public-vision-content', 'always', 'Validate generated public vision summaries', _public_vision),
-    Check('generated-views', 'always', 'Validate that each generated view matches its sources', _generated_views),
+    Check('public-vision-content', 'always', 'Validate public vision source content', _public_vision),
+    Check('generated-views', 'pr', 'Validate generated views that a pull request changes', _generated_views),
     Check('completion-assessment', 'pr', 'Require evidence for plans newly marked done', _completion),
     Check('gap-boundary-assessment', 'pr', 'Require a first-principles assessment for redefined gaps', _boundary),
     Check('project-planning-evidence', 'pr', 'Validate planning evidence for new or opted-in projects', _planning),

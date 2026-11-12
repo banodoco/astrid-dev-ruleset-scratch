@@ -1,6 +1,6 @@
 ## What are you contributing?
 
-- [ ] **Claim:** exactly one plan's `**Owner:**` line changed from `Unassigned` to my own `@GitHubHandle`, plus the `plans/index.md` that `python3 scripts/astrid_dev.py sync` regenerates; no other changes
+- [ ] **Claim:** exactly one plan's `**Owner:**` line changed from `Unassigned` to my own `@GitHubHandle`; no other changes
 - [ ] **New project scope:** a researched, independently useful outcome for maintainer greenlight
 - [ ] **Completed project:** integrated evidence and gap assessment for a specific plan
 - [ ] **Fix, docs or other:** a bounded change referencing the relevant issue or plan

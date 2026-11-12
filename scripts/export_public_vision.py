@@ -313,25 +313,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--revision", help="40-character Astrid Dev revision (defaults to local HEAD)")
     parser.add_argument("--output", type=Path, help="optional JSON output; omit for validation only")
-    parser.add_argument("--sync-readme", action="store_true", help="regenerate vision/README.md from canonical sources")
     args = parser.parse_args()
     revision = args.revision or git_output(ROOT, "rev-parse", "HEAD").strip()
     try:
         result = build(ROOT, revision)
-        expected_readme = render_readme(ROOT, result)
-        readme = ROOT / "vision/README.md"
-        root_readme = ROOT / "README.md"
-        root_text = read(ROOT, Path("README.md"))
-        expected_root_text = render_root_readme(root_text, result)
-        if args.sync_readme:
-            readme.write_text(expected_readme, encoding="utf-8")
-            if root_text != expected_root_text:
-                root_readme.write_text(expected_root_text, encoding="utf-8")
-        else:
-            if read(ROOT, Path("vision/README.md")) != expected_readme:
-                raise ValueError("vision/README.md is stale; run python3 scripts/export_public_vision.py --sync-readme")
-            if root_text != expected_root_text:
-                raise ValueError("README.md vision summary is stale; run python3 scripts/export_public_vision.py --sync-readme")
     except (ValueError, OSError) as exc:
         print(f"ERROR public vision content: {exc}")
         return 1

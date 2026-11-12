@@ -1,6 +1,6 @@
 # Plan catalog
 
-This catalog shows every plan's status, owner, priority order and estimate, including completed and cancelled work. The table is generated, so do not edit it here: change a plan's row in the six lines at the top of its `plans/<id>/plan.md` (Project, Goal, Status, Owner, Estimate, Waiting on) and its order in [priority.md](priority.md), then run `python3 scripts/astrid_dev.py sync` and commit the result. The [root README](../README.md) links here.
+This catalog shows every plan's status, owner, priority order and estimate, including completed and cancelled work. The table is generated, so do not edit it here: change a plan's row in the six lines at the top of its `plans/<id>/plan.md` (Project, Goal, Status, Owner, Estimate, Waiting on) and its order in [priority.md](priority.md); the table refreshes itself on `main` after merge. The [root README](../README.md) links here.
 
 **Priority:** among `queued`, `active`, `blocked` and `paused` plans, higher rows are higher priority. The order comes from [priority.md](priority.md); move a line there to reprioritize. A new plan goes at the end of that list; moving it up is the owner's decision. Terminal `done`/`cancelled` plans stay at the bottom as history. No status alone authorizes work.
 

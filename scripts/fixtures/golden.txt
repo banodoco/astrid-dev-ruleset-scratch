@@ -1,7 +1,6 @@
 bad-status: plans/99-fixture/plan.md: invalid status 'maybe'; use queued, active, blocked, paused, done or cancelled
 bad-status: public vision content: plans/99-fixture/plan.md: invalid status 'maybe'; use queued, active, blocked, paused, done or cancelled
 broken-local-link: README.md: missing link target vision/missing-page.md
-broken-local-link: public vision content: README.md vision summary is stale; run python3 scripts/export_public_vision.py --sync-readme
 duplicate-project-field: plans/99-fixture/plan.md: Status duplicated; keep one **Status:** line before the first ## heading
 duplicate-project-field: public vision content: plans/99-fixture/plan.md: Status duplicated; keep one **Status:** line before the first ## heading
 final-release-without-payload: releases/12.md: final publication needs a JSON payload
@@ -19,7 +18,6 @@ missing-project-field: plans/99-fixture/plan.md: Status missing; add a **Status:
 missing-project-field: public vision content: plans/99-fixture/plan.md: Status missing; add a **Status:** line before the first ## heading
 obsolete-project-path: docs/project-format.md: obsolete strategy/projects path; use plans/
 priority-unknown-id: plans/priority.md: unknown 98-no-such-folder under ## Order (there is no plans/98-no-such-folder/plan.md); fix the name or delete the line
-priority-unknown-id: public vision content: README.md vision summary is stale; run python3 scripts/export_public_vision.py --sync-readme
 release-included-plans-unlinked: strategy.md: release 12 highlight differs from its document
 release-included-plans-unlinked: strategy.md: release 12 plan links differ from its document
 release-missing-sections-and-plans: releases/12.md: missing or empty ## Approach
@@ -35,10 +33,6 @@ route-plan-backlink-mismatch: F-008-portable-generation.md: routed plan 32-gener
 route-plan-backlink-mismatch: plans/32-generation-placement-targets/plan.md: duplicate gap IDs in plan declaration
 route-plan-backlink-mismatch: public vision content: duplicate gap IDs in plan declaration
 route-status-word: F-008-portable-generation.md: route row carries status/ownership word 'active'; the catalog owns it
-stale-plan-catalog: public vision content: README.md vision summary is stale; run python3 scripts/export_public_vision.py --sync-readme
-stale-plan-catalog: view plan-catalog is stale or hand-edited: plans/index.md does not match its sources; edit plans/*/plan.md, plans/priority.md instead, then run python3 scripts/astrid_dev.py sync
-stale-plan-catalog: view status-definitions: cannot check plans/index.md: target must contain exactly one <!-- status-definitions:start --> line and one <!-- status-definitions:end --> line; restore them in plans/index.md; then run python3 scripts/astrid_dev.py sync
-stale-vision-readme: public vision content: vision/README.md is stale; run python3 scripts/export_public_vision.py --sync-readme
 strategy-highlight-mismatch: strategy.md: release 12 highlight differs from its document
 strategy-highlight-mismatch: strategy.md: release 12 plan links differ from its document
 strategy-highlight-mismatch: strategy.md: releases/13.md has no roadmap row
@@ -59,5 +53,3 @@ strategy-release-mismatch: strategy.md: release 12 plan links differ from its do
 strategy-release-mismatch: strategy.md: release 12 state differs from its document
 strategy-release-mismatch: strategy.md: releases/13.md has no roadmap row
 unnamed-active-owner: active project needs a named accountable owner: Synthetic fixture
-unnamed-active-owner: public vision content: README.md vision summary is stale; run python3 scripts/export_public_vision.py --sync-readme
-unnamed-active-owner: view plan-catalog is stale or hand-edited: plans/index.md does not match its sources; edit plans/*/plan.md, plans/priority.md instead, then run python3 scripts/astrid_dev.py sync

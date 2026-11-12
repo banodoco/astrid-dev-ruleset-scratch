@@ -36,9 +36,134 @@ jobs:
             base_sha="$(git rev-parse HEAD^1)"
           fi
           PYTHONDONTWRITEBYTECODE=1 python3 scripts/astrid_dev.py check --base "$base_sha" --event "$GITHUB_EVENT_PATH"
+      - name: Validate refreshed generated views
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 python3 scripts/astrid_dev.py sync
+          PYTHONDONTWRITEBYTECODE=1 python3 scripts/astrid_dev.py check
       - name: Run repository checks
         if: github.event_name != 'pull_request'
         run: python3 scripts/astrid_dev.py check
+
+  refresh-generated:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.GENERATED_REFRESH_APP_ID != ''
+    needs: documentation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    concurrency:
+      group: astrid-dev-refresh-generated
+      cancel-in-progress: false
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Create dedicated refresh App token
+        id: refresh-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.GENERATED_REFRESH_APP_ID }}
+          private-key: ${{ secrets.GENERATED_REFRESH_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ steps.refresh-token.outputs.token }}
+      - name: Refresh and push only declared generated targets
+        env:
+          APP_SLUG: ${{ steps.refresh-token.outputs.app-slug }}
+          APP_TOKEN: ${{ steps.refresh-token.outputs.token }}
+        run: |
+          set -euo pipefail
+          git fetch origin refs/heads/main:refs/remotes/origin/main
+          if [ "$(git rev-parse origin/main)" != "$GITHUB_SHA" ]; then
+            echo "Source commit $GITHUB_SHA was superseded; a later push owns refresh."
+            exit 0
+          fi
+          sync_log="$RUNNER_TEMP/generated-sync.log"
+          sync_paths="$RUNNER_TEMP/generated-paths"
+          PYTHONDONTWRITEBYTECODE=1 python3 scripts/astrid_dev.py sync > "$sync_log"
+          cat "$sync_log"
+          # Treat sync's printed paths as a claim; verify against declarations
+          # and the entire dirty tree before allowing anything into the index.
+          python3 - "$sync_log" "$sync_paths" <<'PY'
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          sys.path.insert(0, "scripts")
+          from views import VIEWS
+
+          lines = Path(sys.argv[1]).read_text(encoding="utf-8").splitlines()
+          if lines == ["Views are current"]:
+              printed = []
+          else:
+              if not lines or any(not line.startswith("Updated ") for line in lines):
+                  raise SystemExit("Unexpected sync output; refusing to stage anything")
+              printed = [line.removeprefix("Updated ") for line in lines]
+          declared = {view.target for view in VIEWS}
+          root = Path.cwd().resolve()
+          if len(set(printed)) != len(printed):
+              raise SystemExit("Duplicate sync path; refusing to stage anything")
+          for name in printed:
+              path = Path(name)
+              if (name not in declared or path.is_absolute() or ".." in path.parts
+                      or path.is_symlink() or not path.resolve().is_relative_to(root)
+                      or not path.is_file()):
+                  raise SystemExit(f"Unsafe or undeclared sync target: {name}")
+          status = subprocess.check_output(
+              ["git", "status", "--porcelain=v1", "-z", "--untracked-files=all"])
+          dirty = []
+          for record in status.split(b"\0"):
+              if not record:
+                  continue
+              # Reject deletions, renames, conflicts and other unexpected kinds
+              # of change; sync only creates or modifies regular target files.
+              if record[:3] not in (b" M ", b"M  ", b"MM ", b" A ", b"A  ", b"AM ", b"?? "):
+                  raise SystemExit("Unexpected git status; refusing to stage anything")
+              dirty.append(record[3:].decode("utf-8"))
+          if set(dirty) != set(printed):
+              raise SystemExit("Dirty paths differ from sync output; refusing to stage anything")
+          Path(sys.argv[2]).write_bytes(b"".join(name.encode("utf-8") + b"\0" for name in printed))
+          PY
+          mapfile -d '' -t targets < "$sync_paths"
+          if [ "${#targets[@]}" -eq 0 ]; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git add -- "${targets[@]}"
+          app_user_id="$(python3 - <<'PY'
+          import json
+          import os
+          from urllib.parse import quote
+          from urllib.request import Request, urlopen
+
+          username = quote(os.environ["APP_SLUG"] + "[bot]", safe="")
+          request = Request(os.environ["GITHUB_API_URL"] + "/users/" + username,
+                            headers={"Authorization": "Bearer " + os.environ["APP_TOKEN"],
+                                     "Accept": "application/vnd.github+json"})
+          with urlopen(request) as response:
+              print(json.load(response)["id"])
+          PY
+          )"
+          git config user.name "${APP_SLUG}[bot]"
+          git config user.email "${app_user_id}+${APP_SLUG}[bot]@users.noreply.github.com"
+          short_sha="$(git rev-parse --short "$GITHUB_SHA")"
+          git commit -m "chore(generated): refresh views for $short_sha"
+          if git push origin HEAD:refs/heads/main; then
+            exit 0
+          fi
+          # Suppress only a race with a newer main, never an auth/ruleset error.
+          git fetch origin refs/heads/main:refs/remotes/origin/main
+          if [ "$(git rev-parse origin/main)" != "$GITHUB_SHA" ]; then
+            echo "Main moved during refresh; a later push owns refresh."
+            exit 0
+          fi
+          echo "Push failed while main still matches $GITHUB_SHA." >&2
+          exit 1
 
   vision-consumer-contract:
     # The Dev exporter alone cannot prove Astrid App can render the feed.

@@ -68,6 +68,10 @@ class ContractTests(unittest.TestCase):
 
 
 class RegisteredRuleTests(unittest.TestCase):
+    def test_generated_views_is_a_pr_check(self):
+        entry = next(entry for entry in checks.REGISTRY if entry.id == "generated-views")
+        self.assertEqual(entry.trigger, "pr")
+
     # Inventory covered by the golden fixture comparisons: catalog parsing and
     # order, owners and paths; release/strategy; gaps, routes and backlinks;
     # project files; subjects; obsolete paths, ledger, links; public vision.
@@ -151,7 +155,6 @@ class ProjectCatalogContractTests(unittest.TestCase):
             "missing-project-field": ("plan-catalog", ("plans/99-fixture/plan.md:", "Status", "missing")),
             "duplicate-project-field": ("plan-catalog", ("plans/99-fixture/plan.md:", "Status", "duplicat")),
             "priority-unknown-id": ("plan-catalog", ("plans/priority.md", "98-no-such-folder")),
-            "stale-plan-catalog": ("generated-views", ("view plan-catalog", "plans/index.md")),
         }
         for name, (rule, fragments) in expected.items():
             with self.subTest(fixture=name), tempfile.TemporaryDirectory() as directory:

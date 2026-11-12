@@ -1,6 +1,6 @@
 # Plan priority
 
-Open plans in the [catalog](index.md) are ranked in this order, top first; move a line to reprioritize, then run `python3 scripts/astrid_dev.py sync`.
+Open plans in the [catalog](index.md) are ranked in this order, top first; move a line to reprioritize; the catalog refreshes itself on `main` after merge.
 A plan not listed here comes after the listed ones, and `done` and `cancelled` plans always sit at the bottom.
 
 ## Order

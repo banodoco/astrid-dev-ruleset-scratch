@@ -7,7 +7,7 @@
 | You want to… | Action | Approval boundary |
 | --- | --- | --- |
 | Fix a bug or small issue | Search/open an [Astrid-dev issue](https://github.com/banodoco/astrid-dev/issues) and submit a focused product PR | Reproduction, actual proof and appropriate product PR review; no project pack |
-| Take on an existing project | Claim one `queued` and `Unassigned` project through a PR that changes the `**Owner:**` line in its `plan.md` and carries the regenerated `plans/index.md` | **A maintainer merges the claim.** It gives ownership, not execution authority |
+| Take on an existing project | Claim one `queued` and `Unassigned` project through a PR that changes only the `**Owner:**` line in its `plan.md` | **The claim bot or a maintainer merges the claim.** It gives ownership, not execution authority |
 | Propose new substantial work | Open a [project proposal issue](https://github.com/banodoco/astrid-dev/issues/new?template=project-proposal.md), then a reviewed scope PR | Maintainer accepts the new scope and project pack |
 | Submit project work | Open product PRs; optionally open an Astrid-dev implementation review PR | An owner’s PR is **queued for review**, not auto-approved |
 | Finish a project | Open an Astrid-dev completion PR linking integrated evidence | Independent completion review and authorized merge |
@@ -22,7 +22,7 @@ No mandatory project-conversation issue. Questions belong in an issue or PR; upd
 
 | Writing work | Canonical source and route |
 | --- | --- |
-| Vision, artistic pillars, creator principles, public copy | [Vision](../vision/README.md). Edit the source files in `vision/` and run `python3 scripts/export_public_vision.py --sync-readme` to refresh their derived overview; after review, CI publishes the public JSON feed. Don't copy editorial content into Astrid App |
+| Vision, artistic pillars, creator principles, public copy | [Vision](../vision/README.md). Edit the source files in `vision/`; after merge, CI refreshes their derived overview on `main` and publishes the public JSON feed. Don't copy editorial content into Astrid App |
 | Gap statements or gap evidence | Follow [the gap-writing procedure](#define-or-reassess-a-vision-gap). Material changes need a boundary review; evidence-only updates use normal PRs |
 | New project scope, plan decisions or task briefs | [Project catalog and pack](project-format.md); new scope uses reviewed project proposals, existing project changes inherit the owner and accepted scope |
 | Agent instructions, workflows or contributor docs | [Main skill](../skills/astrid-dev/SKILL.md), stage-specific skills, [run contract](../skills/astrid-dev-shared/run-contract.md), or this guide—each owns its own concern. For adding checks, generated views, or project fields, see [Extending Astrid-dev](extending.md). Documentation CI checks these paths |
@@ -68,15 +68,15 @@ Use `Supporting connections: None — reason` when appropriate. [CI checks struc
 - **Not now:** work not yet assigned to a release, without invented commitments.
 - **Decisions:** dated owner decisions affecting the release sequence, plus `**Last reviewed:**`.
 
-**When it changes:** creating a release draft or changing its highlight/plans updates the strategy summary in the same PR. A project start/completion may change a release's scope or timing, so review the strategy and release files; the completion PR must touch `strategy.md` (`python3 scripts/astrid_dev.py check`). If the catalog's project information differs, fix the plan's six lines (or [priority.md](../plans/priority.md)) and run `python3 scripts/astrid_dev.py sync`, rather than copying status to the release brief. New priorities and scope require the owner's decision; listing work is not authorization to run or publish it.
+**When it changes:** creating a release draft or changing its highlight/plans updates the strategy summary in the same PR. A project start/completion may change a release's scope or timing, so review the strategy and release files; the completion PR must touch `strategy.md` (`python3 scripts/astrid_dev.py check`). If the catalog's project information differs, fix the plan's six lines (or [priority.md](../plans/priority.md)); the catalog refreshes itself on `main` after merge. Don't copy status to the release brief. New priorities and scope require the owner's decision; listing work is not authorization to run or publish it.
 
 **Safe publishing boundary:** drafts (including future numbered releases) can land on `main` with no complete pins; documentation CI validates their structure. Plan 31 implements a separate fail-closed owner-approved Draft→Final transition with pinned commits, manifest checks and immutable history. A strategy edit must never publish a release. Keep the overview short; the reasoning is in the release file and linked plan/gap documents.
 
 ## Claim a project
 
 1. Find an existing `queued`, `Unassigned` [catalog project](../plans/index.md), read its `plan.md`/`inputs.md`/`tasks.md`, and check blockers.
-2. In a clone (fork if needed), open that project's `plans/<id>/plan.md` and change **only its Owner line** from `**Owner:** Unassigned` to `**Owner:** @GitHubUsername`, with your own username. Then run `python3 scripts/astrid_dev.py sync` and commit the regenerated `plans/index.md` with it; documentation CI fails a claim without it. Change nothing else by hand. Open a PR using [the claim template](../.github/PULL_REQUEST_TEMPLATE/claim.md).
-3. A maintainer merges the PR. The claim bot is not on for this form yet, because it merges only one-file changes; that changes when the generated-file refresh job lands. If two people compete, the second claim conflicts on the same Owner line and is not merged.
+2. In a clone (fork if needed), open that project's `plans/<id>/plan.md` and change **only its Owner line** from `**Owner:** Unassigned` to `**Owner:** @GitHubUsername`, with your own username. Change nothing else; the catalog refreshes itself on `main` after merge. Open a PR using [the claim template](../.github/PULL_REQUEST_TEMPLATE/claim.md).
+3. The claim bot merges the PR once CI passes, where a maintainer has turned it on; otherwise a maintainer merges it. If two people compete, the second claim conflicts on the same Owner line and is not merged.
 4. **This is ownership only.** It neither changes status to `active` nor accepts unresolved scope, grants code execution, incurs cost, or permits release. Honor the project’s accepted scope and existing authority/STOP controls.
 
 No extra registration service, OAuth application for contributors or duplicate owner record.
@@ -84,7 +84,7 @@ No extra registration service, OAuth application for contributors or duplicate o
 ### After claiming: start, pause or hand back
 
 1. Check the project's `Waiting on` field, `inputs.md` planning decision and existing run controls. If the scope is already accepted **and** a specific authorized start is recorded, follow it; do not request the same approval again.
-2. If scope is unresolved, open a [scope-review PR](../.github/PULL_REQUEST_TEMPLATE/project-scope.md) against the *existing* project. If the scope is settled but execution authority is missing, ask the maintainer in a [project question](https://github.com/banodoco/astrid-dev/issues/new?template=project-question.md) for an explicit go specifying the task, permitted environment/cost and destination. Record that decision in the existing project/run context and, when authorized, use an ordinary reviewed PR that changes the `**Status:**` line in its `plan.md` to `active` and includes what `python3 scripts/astrid_dev.py sync` then writes. **Claiming alone never activates work.**
+2. If scope is unresolved, open a [scope-review PR](../.github/PULL_REQUEST_TEMPLATE/project-scope.md) against the *existing* project. If the scope is settled but execution authority is missing, ask the maintainer in a [project question](https://github.com/banodoco/astrid-dev/issues/new?template=project-question.md) for an explicit go specifying the task, permitted environment/cost and destination. Record that decision in the existing project/run context and, when authorized, use an ordinary reviewed PR that changes the `**Status:**` line in its `plan.md` to `active`. **Claiming alone never activates work.**
 3. If you cannot continue, preserve your work, open PRs and blockers. For a **non-active** project, submit a small reviewed PR changing your own `@handle` to `Unassigned`. For an **active** project, first arrange a reviewed handoff to another owner or a reviewed transition to `paused` alongside release; CI doesn't permit an active project without an owner. None of these are auto-claims. Don't rewrite project history.
 
 No lease timer or separate ownership system. The `**Owner:**` line in each plan's `plan.md` is authoritative, and normal GitHub history records claims and handoffs.
@@ -93,7 +93,7 @@ No lease timer or separate ownership system. The `**Owner:**` line in each plan'
 
 A proposal issue captures the desired independent outcome, relevant existing work and gaps, alternative issue/project placements, and likely proof. Anyone can propose—without claiming the work.
 
-To accept a new independent project, open a **scope PR** with the existing three-file pack, plus what `python3 scripts/astrid_dev.py sync` then writes to the catalog: `plan.md` (outcome, scope, interfaces, completion, with `**Status:** queued`), `inputs.md` (prior art, reuse choice, actual owner decision, uncertainty), and `tasks.md` (work and focused proof). Use [the scope template](../.github/PULL_REQUEST_TEMPLATE/project-scope.md) (choose it from the GitHub PR template chooser, or copy its opening lines):
+To accept a new independent project, open a **scope PR** with the existing three-file pack: `plan.md` (outcome, scope, interfaces, completion, with `**Status:** queued`), `inputs.md` (prior art, reuse choice, actual owner decision, uncertainty), and `tasks.md` (work and focused proof). Use [the scope template](../.github/PULL_REQUEST_TEMPLATE/project-scope.md) (choose it from the GitHub PR template chooser, or copy its opening lines):
 
 ```text
 Project: plans/NN-project-name/plan.md
@@ -144,7 +144,7 @@ Project: plans/NN-project-name/plan.md
 Review request: completion
 ```
 
-It changes the `**Status:**` line in that project’s `plan.md` to `done`, includes what `python3 scripts/astrid_dev.py sync` then writes, and includes the existing `## Completion assessment — Plan NN`: actual evidence, implementation PRs in every repo, the exact integrated candidate, **Routes used**, what remains unproven and a justified disposition for each linked vision gap (or the enabler exception). This concise PR summary is the **review evidence pack**: link real receipts, do not create another required file.
+It changes the `**Status:**` line in that project’s `plan.md` to `done` and includes the existing `## Completion assessment — Plan NN`: actual evidence, implementation PRs in every repo, the exact integrated candidate, **Routes used**, what remains unproven and a justified disposition for each linked vision gap (or the enabler exception). This concise PR summary is the **review evidence pack**: link real receipts, do not create another required file.
 
 CI enforces the mechanical completion contract and current references. A reviewer judges actual integrated behavior against the project’s agreed acceptance criteria. A maintainer merges only after required independent review and authorization. Completing the project does **not** automatically close a vision gap or deploy the result.
 

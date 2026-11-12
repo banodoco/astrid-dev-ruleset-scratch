@@ -105,13 +105,56 @@ def expected(view: View, root: Path) -> str:
     return _with_marker(view, view.render(root))
 
 
+def touched(view: View, root: Path, base: str) -> bool:
+    """Compare the generated part at the merge base with the working tree."""
+    root = root.resolve()
+    try:
+        merge_base = subprocess.check_output(
+            ["git", "merge-base", base, "HEAD"], cwd=root, text=True,
+            stderr=subprocess.PIPE).strip()
+    except subprocess.CalledProcessError as exc:
+        raise ValueError(f"view {view.name}: cannot find merge base for {base}: {exc}") from exc
+
+    def region_content(text: str, revision: str) -> str:
+        if not view.region:
+            return text
+        region = "vision-summary" if view.region is True else view.region
+        start = f"<!-- {region}:start -->"
+        end = f"<!-- {region}:end -->"
+        if text.count(start) != 1 or text.count(end) != 1:
+            raise ValueError(f"view {view.name}: {view.target} must contain exactly one {start} and {end} marker pair ({revision})")
+        before, remainder = text.split(start, 1)
+        content, after = remainder.split(end, 1)
+        if after.find(start) >= 0 or before.find(end) >= 0:
+            raise ValueError(f"view {view.name}: invalid {region} marker order in {view.target} ({revision})")
+        return content
+
+    try:
+        baseline = subprocess.check_output(
+            ["git", "show", f"{merge_base}:{view.target}"], cwd=root,
+            stderr=subprocess.PIPE).decode("utf-8")
+    except subprocess.CalledProcessError:
+        baseline = None
+    try:
+        current = (root / view.target).read_text(encoding="utf-8")
+    except FileNotFoundError:
+        current = None
+    if baseline is None or current is None:
+        if current is not None:
+            # Validate a present region even when the target is new.
+            region_content(current, "working tree")
+        return baseline != current
+    return region_content(baseline, merge_base) != region_content(current, "working tree")
+
+
 def check_view(view: View, root: Path) -> list[str]:
     try:
         actual = (root / view.target).read_text(encoding="utf-8")
         wanted = expected(view, root)
         if actual != wanted:
-            return [f"view {view.name} is stale or hand-edited: {view.target} does not match its sources; "
-                    f"edit {', '.join(view.sources)} instead, then run python3 scripts/astrid_dev.py sync"]
+            return [f"view {view.name}: the generated part of {view.target} does not match its sources; "
+                    f"edit {', '.join(view.sources)} instead and undo your change to that part; "
+                    f"it refreshes itself on main after merge"]
     except ValueError as exc:
         detail = str(exc).removeprefix(f"view {view.name}: ")
         return [f"view {view.name}: cannot check {view.target}: {detail}; "
@@ -128,9 +171,24 @@ def check(root: Path) -> list[str]:
 
 
 def sync(root: Path) -> list[str]:
-    changed = []
+    root = root.resolve()
+    targets = []
     for view in VIEWS:
-        target = root / view.target
+        target_name = Path(view.target)
+        if target_name.is_absolute() or ".." in target_name.parts:
+            raise ValueError(f"view {view.name}: unsafe target outside repository: {view.target}")
+        target = root / target_name
+        current = target
+        while current != root and current != current.parent:
+            if current.is_symlink():
+                raise ValueError(f"view {view.name}: target path contains symlink: {view.target}")
+            current = current.parent
+        if not target.resolve().is_relative_to(root):
+            raise ValueError(f"view {view.name}: target outside repository: {view.target}")
+        targets.append(target)
+
+    changed = []
+    for view, target in zip(VIEWS, targets):
         content = expected(view, root)
         target.parent.mkdir(parents=True, exist_ok=True)
         if not target.exists() or target.read_text(encoding="utf-8") != content:

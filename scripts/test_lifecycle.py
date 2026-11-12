@@ -222,8 +222,8 @@ class StatusViewTests(unittest.TestCase):
             self.assertEqual(views.check_view(view, root), [])
             path.write_text(path.read_text(encoding="utf-8").replace(lifecycle.definitions(), "hand edit"), encoding="utf-8")
             self.assertEqual(views.check_view(view, root), [
-                "view status-definitions is stale or hand-edited: plans/index.md does not match its sources; "
-                "edit scripts/lifecycle.py instead, then run python3 scripts/astrid_dev.py sync"])
+                "view status-definitions: the generated part of plans/index.md does not match its sources; "
+                "edit scripts/lifecycle.py instead and undo your change to that part; it refreshes itself on main after merge"])
 
     def test_missing_markers_uses_existing_error(self):
         view = status_view(self)

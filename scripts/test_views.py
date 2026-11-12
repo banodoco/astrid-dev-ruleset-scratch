@@ -3,9 +3,24 @@ import unittest
 import contextlib
 import io
 import shutil
+import subprocess
 from pathlib import Path
 
 from views import View, _with_marker, check, check_view, sync
+
+
+def git(root, *args):
+    return subprocess.check_output(["git", *args], cwd=root, text=True).strip()
+
+
+def commit_base(root):
+    """Make a base only in a disposable test repository."""
+    git(root, "init", "-q", "-b", "main")
+    git(root, "config", "user.name", "Test")
+    git(root, "config", "user.email", "test@example.invalid")
+    git(root, "add", ".")
+    git(root, "commit", "-qm", "base")
+    return git(root, "rev-parse", "HEAD")
 
 
 class ViewTests(unittest.TestCase):
@@ -15,14 +30,18 @@ class ViewTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary) / "repo"
             shutil.copytree(source, root, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+            base = commit_base(root)
             target = root / "vision/README.md"
             content = target.read_text(encoding="utf-8")
             target.write_text(content.replace("# Astrid — ", "# Astrid — Hand edited ", 1), encoding="utf-8")
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
-                code = astrid_dev.main(["check"], root=root)
+                body = Path(temporary) / "body.txt"
+                body.write_text("", encoding="utf-8")
+                code = astrid_dev.main(["check", "--base", base, "--body-file", str(body)], root=root)
             self.assertEqual(code, 1)
-            self.assertIn("ERROR public-vision-content:", output.getvalue())
+            self.assertIn("ERROR generated-views: view public-vision", output.getvalue())
+            self.assertNotIn("ERROR public-vision-content:", output.getvalue())
 
     def test_list_failure_is_reported_as_generated_views_error(self):
         import astrid_dev
@@ -32,12 +51,13 @@ class ViewTests(unittest.TestCase):
 
         registry = [entry for entry in checks.REGISTRY if entry.id == "generated-views"]
         output = io.StringIO()
-        with patch("views.subprocess.run", side_effect=subprocess.CalledProcessError(1, ["astrid_dev.py", "list"])):
+        # Without a base, this PR-only check never renders the check catalog.
+        with patch("views.subprocess.run", side_effect=subprocess.CalledProcessError(1, ["astrid_dev.py", "list"])) as run:
             with contextlib.redirect_stdout(output):
                 code = astrid_dev.main(["check"], registry=registry)
-        self.assertEqual(code, 1)
-        self.assertIn("ERROR generated-views: view check-catalog:", output.getvalue())
-        self.assertNotIn("Traceback", output.getvalue())
+        self.assertEqual(code, 0)
+        self.assertEqual(output.getvalue(), "")
+        run.assert_not_called()
 
     def test_legacy_source_error_hides_both_owned_view_errors(self):
         import checks
@@ -54,18 +74,20 @@ class ViewTests(unittest.TestCase):
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text(contents, encoding="utf-8")
             context = checks.Context(root)
-            self.assertTrue(checks._public_vision(context))
+            source_errors = checks._public_vision(context)
+            self.assertTrue(any("invalid status 'maybe'" in line for line in source_errors), source_errors)
             raw_errors = views.check(root)
             self.assertTrue(any(line.startswith("view public-vision:") for line in raw_errors))
             self.assertTrue(any(line.startswith("view root-vision-summary:") for line in raw_errors))
-            self.assertEqual(checks._generated_views(context),
-                             [line for line in raw_errors if line.startswith("view check-catalog")])
+            # Source errors remain owned by public-vision-content. With no base,
+            # generated-views does not report either owned target or render it.
+            self.assertEqual(checks._generated_views(context), [])
 
     def test_view_check_is_registered(self):
         import checks
         registered = [entry for entry in checks.REGISTRY if entry.id == "generated-views"]
         self.assertEqual(len(registered), 1)
-        self.assertEqual(registered[0].trigger, "always")
+        self.assertEqual(registered[0].trigger, "pr")
         self.assertTrue(registered[0].description)
         self.assertTrue(callable(registered[0].run))
 
@@ -75,16 +97,19 @@ class ViewTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary) / "repo"
             shutil.copytree(source, root, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+            base = commit_base(root)
             target = root / "README.md"
             content = target.read_text(encoding="utf-8")
             target.write_text(content.replace("<!-- vision-summary:end -->", "hand edit\n<!-- vision-summary:end -->"), encoding="utf-8")
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
-                code = astrid_dev.main(["check"], root=root)
+                body = Path(temporary) / "body.txt"
+                body.write_text("", encoding="utf-8")
+                code = astrid_dev.main(["check", "--base", base, "--body-file", str(body)], root=root)
             error_lines = [line for line in output.getvalue().splitlines() if line.startswith("ERROR ")]
             self.assertEqual(code, 1)
             self.assertEqual(len(error_lines), 1)
-            self.assertIn("public-vision-content", error_lines[0])
+            self.assertIn("generated-views: view root-vision-summary", error_lines[0])
 
     def test_file_view_adds_standard_marker(self):
         view = View("sample", ("source.md",), "target.md", lambda root: "# Generated\n")
@@ -269,9 +294,10 @@ class PlanCatalogViewTests(unittest.TestCase):
                 self.assertEqual(views.sync(root), [])
                 self.assertEqual((root / "plans/index.md").read_bytes(), first)
                 self.assertEqual(views.check(root), [])
+                base = commit_base(root)
                 target = root / "plans/index.md"
                 target.write_text(target.read_text().replace("Catalog alpha", "Hand-edited alpha"), encoding="utf-8")
-                errors = checks._generated_views(checks.Context(root))
+                errors = checks._generated_views(checks.Context(root, base=base))
                 self.assertTrue(any("view plan-catalog" in line and "plans/index.md" in line for line in errors), errors)
 
     def test_new_valid_folder_appears_last_among_open_rows_without_a_catalog_edit(self):
@@ -287,6 +313,301 @@ class PlanCatalogViewTests(unittest.TestCase):
             lines = [line for line in views.expected(view, root).splitlines() if line.startswith("|")][2:]
             self.assertEqual([split_table_row(line)[1] for line in lines],
                              ["Catalog alpha", "New open", "Catalog beta"])
+
+
+class TouchedViewTests(unittest.TestCase):
+    def repo(self, *, region=False):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name)
+        view = View("sample", ("source.md",), "target.md", lambda root: "unused", region)
+        text = ("before\n<!-- custom:start -->\ngenerated\n<!-- custom:end -->\nafter\n"
+                if region else "generated\n")
+        (root / view.target).write_text(text, encoding="utf-8")
+        (root / "source.md").write_text("source\n", encoding="utf-8")
+        return root, view, commit_base(root)
+
+    def test_unchanged_file_and_source_only_edit_are_untouched(self):
+        import views
+        root, view, base = self.repo()
+        self.assertFalse(views.touched(view, root, base))
+        (root / "source.md").write_text("new source\n", encoding="utf-8")
+        self.assertFalse(views.touched(view, root, base))
+
+    def test_unstaged_and_staged_file_edits_are_touched(self):
+        import views
+        root, view, base = self.repo()
+        (root / view.target).write_text("hand edit\n", encoding="utf-8")
+        self.assertTrue(views.touched(view, root, base))
+        git(root, "add", view.target)
+        self.assertTrue(views.touched(view, root, base))
+
+    def test_committed_file_edit_is_touched(self):
+        import views
+        root, view, base = self.repo()
+        (root / view.target).write_text("committed edit\n", encoding="utf-8")
+        git(root, "add", view.target)
+        git(root, "commit", "-qm", "edit target")
+        self.assertTrue(views.touched(view, root, base))
+
+    def test_new_untracked_file_is_touched(self):
+        import views
+        root, view, _ = self.repo()
+        git(root, "rm", "-q", view.target)
+        git(root, "commit", "-qm", "base without target")
+        base = git(root, "rev-parse", "HEAD")
+        (root / view.target).write_text("new file\n", encoding="utf-8")
+        self.assertTrue(views.touched(view, root, base))
+
+    def test_deleted_file_is_touched(self):
+        import views
+        root, view, base = self.repo()
+        (root / view.target).unlink()
+        self.assertTrue(views.touched(view, root, base))
+
+    def test_comparison_uses_merge_base_instead_of_base_tip(self):
+        import views
+        root, view, _ = self.repo()
+        git(root, "switch", "-qc", "other")
+        (root / view.target).write_text("other branch\n", encoding="utf-8")
+        git(root, "add", view.target)
+        git(root, "commit", "-qm", "other target")
+        base = git(root, "rev-parse", "HEAD")
+        git(root, "switch", "-q", "main")
+        self.assertFalse(views.touched(view, root, base))
+        # Equal to the base tip, but changed relative to the common ancestor.
+        (root / view.target).write_text("other branch\n", encoding="utf-8")
+        self.assertTrue(views.touched(view, root, base))
+
+    def test_generic_region_ignores_prose_before_and_after_markers(self):
+        import views
+        root, view, base = self.repo(region="custom")
+        target = root / view.target
+        target.write_text(target.read_text().replace("before", "new title").replace("after", "new notes"),
+                          encoding="utf-8")
+        self.assertFalse(views.touched(view, root, base))
+
+    def test_generic_region_content_edit_is_touched(self):
+        import views
+        root, view, base = self.repo(region="custom")
+        target = root / view.target
+        target.write_text(target.read_text().replace("generated", "hand edit"), encoding="utf-8")
+        self.assertTrue(views.touched(view, root, base))
+
+    def test_missing_working_tree_region_marker_raises(self):
+        import views
+        root, view, base = self.repo(region="custom")
+        target = root / view.target
+        target.write_text(target.read_text().replace("<!-- custom:end -->", ""), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "sample|region"):
+            views.touched(view, root, base)
+
+    def test_region_marker_missing_in_both_versions_is_not_untouched(self):
+        import views
+        root, view, _ = self.repo(region="custom")
+        target = root / view.target
+        target.write_text(target.read_text().replace("<!-- custom:start -->", ""), encoding="utf-8")
+        git(root, "add", view.target)
+        git(root, "commit", "-qm", "missing marker")
+        with self.assertRaisesRegex(ValueError, "sample|region"):
+            views.touched(view, root, git(root, "rev-parse", "HEAD"))
+
+
+class GeneratedViewsRefreshTests(unittest.TestCase):
+    def repo(self, *, region=False):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name)
+        (root / "source.md").write_text("source\n", encoding="utf-8")
+
+        def render(root):
+            content = (root / "source.md").read_text(encoding="utf-8")
+            if not region:
+                return content
+            before, rest = (root / "target.md").read_text(encoding="utf-8").split("<!-- custom:start -->")
+            _, after = rest.split("<!-- custom:end -->")
+            return before + "<!-- custom:start -->\n" + content + "<!-- custom:end -->" + after
+
+        view = View("sample", ("source.md",), "target.md", render, "custom" if region else False)
+        target = root / view.target
+        target.write_text("before\n<!-- custom:start -->\nold\n<!-- custom:end -->\nafter\n", encoding="utf-8")
+        import views
+        target.write_text(views.expected(view, root), encoding="utf-8")
+        return root, view, commit_base(root)
+
+    def errors(self, root, view, base=None):
+        import checks
+        import views
+        from unittest.mock import patch
+        # Isolate the refresh rule from unrelated source validators.
+        with patch.object(views, "VIEWS", (view,)), \
+             patch.object(checks, "_catalog", return_value=[]), \
+             patch.object(checks, "_public_vision", return_value=[]):
+            return checks._generated_views(checks.Context(root, base=base))
+
+    def test_no_base_skips_a_stale_target(self):
+        root, view, _ = self.repo()
+        (root / "source.md").write_text("changed source\n", encoding="utf-8")
+        self.assertEqual(self.errors(root, view), [])
+
+    def test_source_only_change_leaves_stale_untouched_target_allowed(self):
+        root, view, base = self.repo()
+        (root / "source.md").write_text("changed source\n", encoding="utf-8")
+        self.assertEqual(self.errors(root, view, base), [])
+
+    def test_correctly_regenerated_touched_target_is_allowed(self):
+        import views
+        root, view, base = self.repo()
+        (root / "source.md").write_text("changed source\n", encoding="utf-8")
+        (root / view.target).write_text(views.expected(view, root), encoding="utf-8")
+        self.assertEqual(self.errors(root, view, base), [])
+
+    def test_hand_edit_names_view_target_and_source_to_edit(self):
+        root, view, base = self.repo()
+        (root / view.target).write_text("hand edit\n", encoding="utf-8")
+        errors = self.errors(root, view, base)
+        self.assertEqual(len(errors), 1, errors)
+        for text in ("view sample", "target.md", "edit source.md"):
+            self.assertIn(text, errors[0])
+
+    def test_prose_only_edit_does_not_expose_a_stale_region(self):
+        root, view, base = self.repo(region=True)
+        (root / "source.md").write_text("changed source\n", encoding="utf-8")
+        target = root / view.target
+        target.write_text(target.read_text().replace("before", "free prose").replace("after", "free notes"),
+                          encoding="utf-8")
+        self.assertEqual(self.errors(root, view, base), [])
+
+    def test_missing_region_marker_is_reported_even_when_unchanged(self):
+        root, view, _ = self.repo(region=True)
+        target = root / view.target
+        target.write_text(target.read_text().replace("<!-- custom:start -->", ""), encoding="utf-8")
+        git(root, "add", view.target)
+        git(root, "commit", "-qm", "missing marker")
+        errors = self.errors(root, view, git(root, "rev-parse", "HEAD"))
+        self.assertEqual(len(errors), 1, errors)
+        self.assertIn("view sample", errors[0])
+        self.assertIn("target.md", errors[0])
+
+    def test_touched_check_catalog_renderer_failure_is_reported(self):
+        import views
+        from unittest.mock import patch
+        root, _, base = self.repo()
+        view = View("check-catalog", ("scripts/checks.py",), "target.md", views._checks)
+        (root / view.target).write_text("hand edit\n", encoding="utf-8")
+        # Keep git calls real: only the declared renderer fails.
+        with patch.object(views, "_checks", side_effect=subprocess.CalledProcessError(1, ["astrid_dev.py", "list"])):
+            view = View(view.name, view.sources, view.target, views._checks)
+            errors = self.errors(root, view, base)
+        self.assertEqual(len(errors), 1, errors)
+        self.assertIn("view check-catalog:", errors[0])
+        self.assertIn("target.md", errors[0])
+        self.assertIn("scripts/checks.py", errors[0])
+
+
+class PublicVisionRefreshTests(unittest.TestCase):
+    def repo(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name) / "repo"
+        import golden
+        golden._copy_tree(root)
+        return root
+
+    def stale_targets(self, root):
+        for name in ("vision/README.md", "README.md"):
+            target = root / name
+            target.write_text(target.read_text() + "\nStale generated content.\n", encoding="utf-8")
+        # The root view owns only its region; stale content must go inside it.
+        target = root / "README.md"
+        target.write_text(target.read_text().replace("<!-- vision-summary:end -->",
+                          "stale\n<!-- vision-summary:end -->"), encoding="utf-8")
+
+    def test_public_vision_source_check_ignores_stale_targets(self):
+        import checks
+        root = self.repo()
+        self.stale_targets(root)
+        self.assertEqual(checks._public_vision(checks.Context(root)), [])
+
+    def test_exporter_accepts_stale_targets_and_does_not_write_them(self):
+        import export_public_vision as exporter
+        import json
+        from unittest.mock import patch
+        root = self.repo()
+        self.stale_targets(root)
+        before = {name: (root / name).read_bytes() for name in ("vision/README.md", "README.md")}
+        output = root.parent / "vision.json"
+        revision = "0000000000000000000000000000000000000000"
+        wanted = exporter.build(root, revision)
+        with patch.object(exporter, "ROOT", root), \
+             patch("sys.argv", ["export_public_vision.py", "--revision", revision, "--output", str(output)]), \
+             contextlib.redirect_stdout(io.StringIO()):
+            code = exporter.main()
+        self.assertEqual(code, 0)
+        self.assertEqual(json.loads(output.read_text()), wanted)
+        self.assertEqual({name: (root / name).read_bytes() for name in before}, before)
+
+    def test_exporter_removes_sync_readme_option(self):
+        import export_public_vision as exporter
+        from unittest.mock import patch
+        root = self.repo()
+        with patch.object(exporter, "ROOT", root), \
+             patch("sys.argv", ["export_public_vision.py", "--sync-readme", "--revision",
+                                "0000000000000000000000000000000000000000"]), \
+             contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            with self.assertRaises(SystemExit) as error:
+                exporter.main()
+        self.assertEqual(error.exception.code, 2)
+
+
+class SyncTargetSafetyTests(unittest.TestCase):
+    def assert_refused_before_writing(self, root, unsafe):
+        import views
+        from unittest.mock import patch
+        safe = root / "safe.md"
+        safe.write_text("unchanged\n", encoding="utf-8")
+        safe_view = View("safe", ("source.md",), "safe.md", lambda root: "new safe content\n")
+        unsafe_view = View("unsafe", ("source.md",), unsafe, lambda root: "unsafe content\n")
+        # The invalid target comes second: a per-write check is too late.
+        with patch.object(views, "VIEWS", (safe_view, unsafe_view)):
+            with self.assertRaisesRegex(ValueError, "unsafe|target|repository|symlink"):
+                views.sync(root)
+        self.assertEqual(safe.read_text(), "unchanged\n")
+
+    def test_target_symlink_inside_repository_is_refused_before_any_write(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            real = root / "real.md"
+            real.write_text("real content\n", encoding="utf-8")
+            (root / "link.md").symlink_to("real.md")
+            self.assert_refused_before_writing(root, "link.md")
+            self.assertEqual(real.read_text(), "real content\n")
+
+    def test_parent_symlink_leaving_repository_is_refused_before_any_write(self):
+        with tempfile.TemporaryDirectory() as directory:
+            parent = Path(directory)
+            root = parent / "repo"
+            root.mkdir()
+            outside = parent / "outside"
+            outside.mkdir()
+            (root / "escape").symlink_to(outside, target_is_directory=True)
+            self.assert_refused_before_writing(root, "escape/target.md")
+            self.assertFalse((outside / "target.md").exists())
+
+    def test_parent_traversal_leaving_repository_is_refused_before_any_write(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "repo"
+            root.mkdir()
+            self.assert_refused_before_writing(root, "../outside.md")
+            self.assertFalse((root.parent / "outside.md").exists())
+
+    def test_absolute_target_outside_repository_is_refused_before_any_write(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "repo"
+            root.mkdir()
+            outside = Path(directory) / "outside.md"
+            self.assert_refused_before_writing(root, str(outside))
+            self.assertFalse(outside.exists())
 
 
 class PullRequestBaseTests(unittest.TestCase):
