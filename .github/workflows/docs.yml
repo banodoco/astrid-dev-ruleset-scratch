@@ -50,6 +50,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.GENERATED_REFRESH_APP_ID != ''
     needs: documentation
     runs-on: ubuntu-latest
+    environment: generated-refresh
     permissions:
       contents: read
     concurrency:
@@ -58,33 +59,28 @@ jobs:
     env:
       PYTHONDONTWRITEBYTECODE: "1"
     steps:
-      - name: Create dedicated refresh App token
-        id: refresh-token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ vars.GENERATED_REFRESH_APP_ID }}
-          private-key: ${{ secrets.GENERATED_REFRESH_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-          repositories: ${{ github.event.repository.name }}
-          permission-contents: write
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.sha }}
           fetch-depth: 0
-          token: ${{ steps.refresh-token.outputs.token }}
-      - name: Refresh and push only declared generated targets
+          persist-credentials: false
+      - name: Refresh and verify only declared generated targets
+        id: refresh
         env:
-          APP_SLUG: ${{ steps.refresh-token.outputs.app-slug }}
-          APP_TOKEN: ${{ steps.refresh-token.outputs.token }}
+          READ_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          git fetch origin refs/heads/main:refs/remotes/origin/main
+          git fetch "https://x-access-token:${READ_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" refs/heads/main:refs/remotes/origin/main
           if [ "$(git rev-parse origin/main)" != "$GITHUB_SHA" ]; then
             echo "Source commit $GITHUB_SHA was superseded; a later push owns refresh."
             exit 0
           fi
           sync_log="$RUNNER_TEMP/generated-sync.log"
           sync_paths="$RUNNER_TEMP/generated-paths"
+          # Repository code runs below (sync, check). It must not be able to plant
+          # git configuration (a fsmonitor, an alias, a credential helper) that a
+          # later git command would run while the write token exists.
+          git_config_before="$(sha256sum .git/config | cut -d' ' -f1)"
           PYTHONDONTWRITEBYTECODE=1 python3 scripts/astrid_dev.py sync > "$sync_log"
           cat "$sync_log"
           # Treat sync's printed paths as a claim; verify against declarations
@@ -129,12 +125,36 @@ jobs:
               raise SystemExit("Dirty paths differ from sync output; refusing to stage anything")
           Path(sys.argv[2]).write_bytes(b"".join(name.encode("utf-8") + b"\0" for name in printed))
           PY
+          PYTHONDONTWRITEBYTECODE=1 python3 scripts/astrid_dev.py check
+          if [ "$(sha256sum .git/config | cut -d' ' -f1)" != "$git_config_before" ]; then
+            echo "git configuration changed during the refresh; refusing to continue" >&2
+            exit 1
+          fi
           mapfile -d '' -t targets < "$sync_paths"
           if [ "${#targets[@]}" -eq 0 ]; then
             echo "Nothing changed."
             exit 0
           fi
           git add -- "${targets[@]}"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Create dedicated refresh App token
+        if: steps.refresh.outputs.changed == 'true'
+        id: refresh-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.GENERATED_REFRESH_APP_ID }}
+          private-key: ${{ secrets.GENERATED_REFRESH_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+      - name: Commit and push verified generated targets
+        if: steps.refresh.outputs.changed == 'true'
+        env:
+          APP_SLUG: ${{ steps.refresh-token.outputs.app-slug }}
+          APP_TOKEN: ${{ steps.refresh-token.outputs.token }}
+          READ_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
           app_user_id="$(python3 - <<'PY'
           import json
           import os
@@ -152,12 +172,12 @@ jobs:
           git config user.name "${APP_SLUG}[bot]"
           git config user.email "${app_user_id}+${APP_SLUG}[bot]@users.noreply.github.com"
           short_sha="$(git rev-parse --short "$GITHUB_SHA")"
-          git commit -m "chore(generated): refresh views for $short_sha"
-          if git push origin HEAD:refs/heads/main; then
+          git -c core.hooksPath=/dev/null -c commit.gpgsign=false commit -m "chore(generated): refresh views for $short_sha"
+          if git -c core.hooksPath=/dev/null push "https://x-access-token:${APP_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/main; then
             exit 0
           fi
           # Suppress only a race with a newer main, never an auth/ruleset error.
-          git fetch origin refs/heads/main:refs/remotes/origin/main
+          git -c core.hooksPath=/dev/null fetch "https://x-access-token:${READ_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" refs/heads/main:refs/remotes/origin/main
           if [ "$(git rev-parse origin/main)" != "$GITHUB_SHA" ]; then
             echo "Main moved during refresh; a later push owns refresh."
             exit 0

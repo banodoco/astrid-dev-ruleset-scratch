@@ -349,6 +349,23 @@ Reviewed on Runtime `3d19ba9a`, Agent `41170fdb`, App `73a8500d` (superseded; se
 
 **Candidate identity (superseded runs are not evidence):** Runtime `3d19ba9a`; Agent `cand/29-r10` `291b5cbd`; App `cand/29-r10` `26585ed9`; manifest sha256 `4771c1e6…`. Earlier runs `42515380385` and `42515533405` are cancelled.
 
+### UR-16 Patch lane
+
+- **Outcome:** A small fix reaches users as a patch release in hours, not a full release cycle, with no loss of the release invariants.
+- **Route:** X.
+- **Dependencies and inputs:**
+  - [decision 17](inputs.md);
+  - the [Release skill](../../skills/astrid-dev-release/SKILL.md) Patch release section, written 12 Nov;
+  - Plan 09 IU-15 for the update rows from every published release.
+- **Work:**
+  - Make `release-guard` and the release record recognise a patch: the tuple diff is limited to the patched component, and the record lists the fix commits and the carried-over evidence by run and SHA.
+  - Show the patch version to users through Plan 31 RL-3.
+  - Write a dry-run patch against Release 12 (the IU-14 fix) as the worked example, without publishing it.
+- **Focused checks:**
+  - `release-guard` accepts a patch whose diff touches only the patched component, and refuses one that also changes the Runtime or the schema digest;
+  - the release record validates carried-over evidence by SHA.
+- **Done:** Both checks pass. The dry-run patch record qualifies on its listed evidence alone.
+
 ## Resume note (manager state, for compaction)
 
 - **Start here on a new machine:** [handoff.md](handoff.md) holds the goal, the gate, the current tuple, the next steps, who's who and the evidence index (2026-11-10).

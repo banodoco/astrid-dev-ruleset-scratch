@@ -43,7 +43,7 @@ class ViewTests(unittest.TestCase):
             self.assertIn("ERROR generated-views: view public-vision", output.getvalue())
             self.assertNotIn("ERROR public-vision-content:", output.getvalue())
 
-    def test_list_failure_is_reported_as_generated_views_error(self):
+    def test_pr_only_check_without_base_skips_catalog_render(self):
         import astrid_dev
         import checks
         import subprocess
@@ -82,6 +82,44 @@ class ViewTests(unittest.TestCase):
             # Source errors remain owned by public-vision-content. With no base,
             # generated-views does not report either owned target or render it.
             self.assertEqual(checks._generated_views(context), [])
+
+    def test_base_source_error_hides_hand_edited_vision_view_error(self):
+        import astrid_dev
+        import checks
+        source = Path(__file__).resolve().parent.parent
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "repo"
+            shutil.copytree(source, root, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+            base_readme = root / "README.md"
+            original_readme = base_readme.read_text(encoding="utf-8")
+            base_readme.write_text(original_readme.replace("<!-- vision-summary:end -->", "", 1),
+                                   encoding="utf-8")
+            base = commit_base(root)
+            base_readme.write_text(original_readme, encoding="utf-8")
+            plan = root / "plans/48-one-record-model/plan.md"
+            text = plan.read_text(encoding="utf-8")
+            plan.write_text(text.replace("**Status:** active", "**Status:** maybe", 1), encoding="utf-8")
+            target = root / "vision/README.md"
+            text = target.read_text(encoding="utf-8")
+            target.write_text(text.replace("# Astrid — ", "# Astrid — Hand edited ", 1), encoding="utf-8")
+
+            import views
+            root_summary = next(view for view in views.VIEWS if view.name == "root-vision-summary")
+            self.assertTrue(views.touched(root_summary, root, base))
+
+            registry = [entry for entry in checks.REGISTRY
+                        if entry.id in {"public-vision-content", "generated-views"}]
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                body = Path(temporary) / "body.txt"
+                body.write_text("", encoding="utf-8")
+                code = astrid_dev.main(["check", "--base", base, "--body-file", str(body)],
+                                       root=root, registry=registry)
+            error_lines = [line for line in output.getvalue().splitlines() if line.startswith("ERROR ")]
+            self.assertEqual(code, 1)
+            self.assertEqual(len(error_lines), 1, error_lines)
+            self.assertIn("ERROR public-vision-content:", error_lines[0])
+            self.assertIn("invalid status 'maybe'", error_lines[0])
 
     def test_view_check_is_registered(self):
         import checks
@@ -152,6 +190,20 @@ class ViewTests(unittest.TestCase):
                 self.assertEqual(check(root), [])
             finally:
                 views.VIEWS = previous
+
+    def test_sync_reports_shared_target_once_when_both_regions_are_stale(self):
+        source = Path(__file__).resolve().parent.parent
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "repo"
+            shutil.copytree(source, root, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+            target = root / "plans/index.md"
+            content = target.read_text(encoding="utf-8")
+            content = content.replace("<!-- plan-catalog:start -->", "<!-- plan-catalog:start -->\nhand edited catalog", 1)
+            content = content.replace("<!-- status-definitions:start -->", "<!-- status-definitions:start -->\nhand edited definitions", 1)
+            target.write_text(content, encoding="utf-8")
+
+            self.assertEqual(sync(root), ["plans/index.md"])
+            self.assertEqual(sync(root), [])
 
 
 class PlanCatalogViewTests(unittest.TestCase):
@@ -411,6 +463,44 @@ class TouchedViewTests(unittest.TestCase):
         git(root, "commit", "-qm", "missing marker")
         with self.assertRaisesRegex(ValueError, "sample|region"):
             views.touched(view, root, git(root, "rev-parse", "HEAD"))
+
+    def test_region_added_after_base_without_markers_is_checked(self):
+        import views
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            target = root / "target.md"
+            target.write_text("before\nafter\n", encoding="utf-8")
+            view = View("sample", ("source.md",), "target.md",
+                        lambda root: "before\n<!-- custom:start -->\nrendered\n<!-- custom:end -->\nafter\n",
+                        "custom")
+            base = commit_base(root)
+            target.write_text(views.expected(view, root), encoding="utf-8")
+
+            self.assertTrue(views.touched(view, root, base))
+            self.assertEqual(check_view(view, root), [])
+            target.write_text(target.read_text(encoding="utf-8").replace("rendered", "hand edited"),
+                              encoding="utf-8")
+            self.assertTrue(views.touched(view, root, base))
+            self.assertEqual(len(check_view(view, root)), 1)
+
+    def test_repaired_region_markers_are_checked(self):
+        import views
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            target = root / "target.md"
+            target.write_text("before\n<!-- custom:start -->\nold generated\nafter\n", encoding="utf-8")
+            view = View("sample", ("source.md",), "target.md",
+                        lambda root: "before\n<!-- custom:start -->\nrendered\n<!-- custom:end -->\nafter\n",
+                        "custom")
+            base = commit_base(root)
+            target.write_text(views.expected(view, root), encoding="utf-8")
+
+            self.assertTrue(views.touched(view, root, base))
+            self.assertEqual(check_view(view, root), [])
+            target.write_text(target.read_text(encoding="utf-8").replace("rendered", "hand edited"),
+                              encoding="utf-8")
+            self.assertTrue(views.touched(view, root, base))
+            self.assertEqual(len(check_view(view, root)), 1)
 
 
 class GeneratedViewsRefreshTests(unittest.TestCase):

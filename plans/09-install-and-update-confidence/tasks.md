@@ -22,7 +22,7 @@ The project is planned, not dispatched. Exact test selectors are not present in 
 | [IU-11 Update-test hardening (from the R1 update-test review)](#iu-11-update-test-hardening-from-the-r1-update-test-review) | N / Luna | IU-1 | [ ] |
 | [IU-12 Windows pack-host retirement premise](#iu-12-windows-pack-host-retirement-premise) | X | IU-0 | [ ] |
 | [IU-13 Installer lock hand-off for schema-changing updates](#iu-13-installer-lock-hand-off-for-schema-changing-updates) | X | IU-1 | [ ] |
-| [IU-14 Unblock: set aside managed copies of built-in packs (Release 12.1)](#iu-14-unblock-set-aside-managed-copies-of-built-in-packs-release-121) | X | start | [ ] |
+| [IU-14 Unblock: set aside managed copies of built-in packs (Release 13)](#iu-14-unblock-set-aside-managed-copies-of-built-in-packs-release-13) | X | start | [ ] |
 | [IU-15 Lived-in update gate from every published release](#iu-15-lived-in-update-gate-from-every-published-release) | X | IU-14 | [ ] |
 | [IU-16 Sign-in on clean installs without the legacy copy](#iu-16-sign-in-on-clean-installs-without-the-legacy-copy) | X | IU-14 | [ ] |
 | [IU-17 One bundled-pack root, capabilities proven](#iu-17-one-bundled-pack-root-capabilities-proven) | N | start | [ ] |
@@ -177,10 +177,10 @@ The project is planned, not dispatched. Exact test selectors are not present in 
 - **Focused checks:** A stand-in release with a newer schema target updates through both paths on Linux, macOS and Windows, with the workspace preserved.
 - **Done:** That stand-in update passes on all six direct and Pinokio rows.
 
-### IU-14 Unblock: set aside managed copies of built-in packs (Release 12.1)
+### IU-14 Unblock: set aside managed copies of built-in packs (Release 13)
 
 - **Outcome:** A user who signed in to Hivemind on Release 1, 9 or 10 updates to the current release by re-running the normal update, keeps Hivemind sign-in, and can still roll back.
-- **Route:** X. In progress on astrid-agent `claude/bold-keller-m2v22v`.
+- **Route:** X. Implemented on astrid-agent `claude/bold-keller-m2v22v` `4d9c8e447`, including the skills-sync stderr fix found by the journey.
 - **Dependencies and inputs:** [Phase 2 evidence](inputs.md#phase-2-upgrade-safe-installed-state).
   - R1, R9 and R10 `astrid login` provisions a managed Hivemind *before* authenticating: an `active.hivemind` entry in `~/.local/state/astrid/default/pack-sources.json` and a checkout in `~/.local/share/astrid/packs/hivemind`.
   - From R11, Hivemind is built in, and `astrid/core/pack/ownership.py:39-45` makes the duplicate fatal. The pack host exits 1 and the installer rolls back.
@@ -192,7 +192,7 @@ The project is planned, not dispatched. Exact test selectors are not present in 
 - **Focused checks:**
   - Unit fixtures with an R1-shaped state: a clean, a dirty and a deleted checkout; the state is byte-identical afterwards; a non-product managed pack is still verified.
   - A macOS journey that provisions the managed Hivemind with R1's own code, then updates. It fails on R12, passes on the hotfix, and includes a forced rollback.
-- **Done:** The journey passes in all three variants from R1, R9 and R10. Released through the Release skill as 12.1.
+- **Done:** The journey passes in all three variants from R1, R9 and R10. Folded into Release 13 (owner, 12 Nov), together with IU-20's progress lines.
 
 ### IU-15 Lived-in update gate from every published release
 
@@ -276,6 +276,9 @@ The project is planned, not dispatched. Exact test selectors are not present in 
   - "Last update result: Recovery needed" stays after a clean rollback.
 - **Work:**
   - The installer prints one line per phase, and the failing service's safe cause in plain words, in both the terminal and the receipt. A clean rollback says so plainly, with the next step.
+  - Long phases show a small animated indicator when the terminal is interactive: the owner's zigzag line that draws itself and then erases (12 Nov). Never in logs or piped output.
+  - The bootstrap's first line stops saying "the first time takes a few minutes" on an update.
+  - Internal notes such as "Previous chat command is unavailable…" go to the log only. Building on Agent and App `r13/installer-progress`, for Release 13.
   - The Runtime and App distinguish an update in progress, temporary fencing and abandoned recovery. The App shows one "Astrid is updating" state and holds edits.
   - The diagnostics download includes the service logs.
   - The `timeline_commit_error` name for fenced polls is corrected.
