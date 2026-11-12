@@ -4,13 +4,13 @@
 
 **Goal:** Hosted proof of the generated-file refresh; no product change.
 
-**Status:** queued
+**Status:** blocked
 
 **Owner:** Unassigned
 
 **Estimate:** TBD
 
-**Waiting on:** —
+**Waiting on:** hosted proof of the refresh
 
 **Start:** [Astrid contributor skill](../../skills/astrid-dev/SKILL.md) and [domain map](../../skills/astrid-dev/references/domains.md). The six lines above are this project's row in the [catalog](../../plans/index.md): change them here, one line each, then run `python3 scripts/astrid_dev.py sync`. Its priority is its place in [priority.md](../../plans/priority.md).
 
