@@ -52,3 +52,4 @@ A plan not listed here comes after the listed ones, and `done` and `cancelled` p
 - 07-pinokio
 - 08-release1-install-update
 - 01-installer-consent
+- 91-proof-b
