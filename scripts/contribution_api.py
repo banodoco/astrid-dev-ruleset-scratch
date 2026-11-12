@@ -42,8 +42,13 @@ def request(method: str, path: str, payload=None):
             **({"Content-Type": "application/json"} if data is not None else {}),
         },
     )
-    with urllib.request.urlopen(req, timeout=20) as response:
-        return json.loads(response.read())
+    try:
+        with urllib.request.urlopen(req, timeout=20) as response:
+            return json.loads(response.read())
+    except urllib.error.HTTPError as exc:
+        import sys
+        print(f"DIAG {method} {path} -> {exc.code} {exc.read()[:300]!r} headers={dict(exc.headers)}".replace(os.environ['GH_TOKEN'], '***'), file=sys.stderr)
+        raise
 
 
 def changed_files(repo: str, number: int) -> list[dict]:
