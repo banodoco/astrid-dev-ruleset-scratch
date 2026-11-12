@@ -196,6 +196,9 @@ class ViewTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary) / "repo"
             shutil.copytree(source, root, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+            # main's generated pages may be stale between a merge and the refresh job's
+            # commit; bring every view current first so only plans/index.md is left to change.
+            sync(root)
             target = root / "plans/index.md"
             content = target.read_text(encoding="utf-8")
             content = content.replace("<!-- plan-catalog:start -->", "<!-- plan-catalog:start -->\nhand edited catalog", 1)
