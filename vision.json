@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "source": {
     "repository": "banodoco/astrid-dev",
-    "revision": "719fe3f95d86ce55e95983c738272905739e71f4"
+    "revision": "7d787180521692dc8e74104f57ccd2c85bdc3798"
   },
   "vision": {
     "title": "A tool to unlock the collective artistic ambition of the open-source AI community",
     "introMarkdown": "Astrid aims to help individuals and the community as a whole pursue artistic work beyond what they thought possible.",
-    "contributeMarkdown": "You and your agents can contribute to Astrid's tools, knowledge and creative community.\n\n[Give these instructions to your agent](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/README.md#want-to-contribute-give-this-to-your-agent)",
+    "contributeMarkdown": "You and your agents can contribute to Astrid's tools, knowledge and creative community.\n\n[Give these instructions to your agent](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/README.md#want-to-contribute-give-this-to-your-agent)",
     "agentPrompt": "Help me contribute to Astrid. Start at\nhttps://github.com/banodoco/astrid-dev and follow\nskills/astrid-dev/SKILL.md. Find relevant existing\nissues and project work before proposing anything new.\nHelp me choose the smallest useful contribution,\nverify it, and follow the repository's review process."
   },
   "pillars": [
@@ -37,7 +37,7 @@
           "detailsMarkdown": "Every blocker that inhibits artists from making original, demanding pieces is worth tackling, whether it is a small irritation or a fundamental limit of the technology. No problem should be beneath our attention or beyond our ambition in that pursuit; we should judge success by the finished work artists can make and stand behind."
         }
       ],
-      "bodyMarkdown": "Astrid is designed to support serious, sustained artistic practice.\n\nEverything should be built so that artists can define, direct, and understand their work. From early experimentation through sustained projects to finished pieces, Astrid should foster a deep, evolving partnership between the artist, their agents, and their tools—one that expands possibility while preserving the artist's intent and judgment.\n\n## Characteristics\n\n### Artistic agency\n\nAstrid should be designed so artists can define and direct their work at every stage.\n\nThe creator chooses what to make, how to refine it, and which advice to accept. Their agents and tools should become ever more capable collaborators without silently replacing artistic judgment or making decisions impossible to inspect and understand.\n\n### Continuity and iteration\n\nAmbitious work should remain editable across many sessions and revisions.\n\nA project must preserve its materials, decisions, history, and working state so that artists can return, compare alternatives, refine difficult passages, and sustain a coherent direction over time. Continuity is what allows the artist's relationship with their tools and agents to deepen rather than reset with every session.\n\n### Finished artistic work\n\nThe tool should help creators carry their ideas through to meaningful completed work.\n\nEvery blocker that inhibits artists from making original, demanding pieces is worth tackling, whether it is a small irritation or a fundamental limit of the technology. No problem should be beneath our attention or beyond our ambition in that pursuit; we should judge success by the finished work artists can make and stand behind.\n\n## References\n\n**Gap:** [AA-001 — Sustained, ambitious creative work](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/AA-001-sustained-creative-work.md). The [guiding principles](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/README.md#four-driving-principles) apply here too."
+      "bodyMarkdown": "Astrid is designed to support serious, sustained artistic practice.\n\nEverything should be built so that artists can define, direct, and understand their work. From early experimentation through sustained projects to finished pieces, Astrid should foster a deep, evolving partnership between the artist, their agents, and their tools—one that expands possibility while preserving the artist's intent and judgment.\n\n## Characteristics\n\n### Artistic agency\n\nAstrid should be designed so artists can define and direct their work at every stage.\n\nThe creator chooses what to make, how to refine it, and which advice to accept. Their agents and tools should become ever more capable collaborators without silently replacing artistic judgment or making decisions impossible to inspect and understand.\n\n### Continuity and iteration\n\nAmbitious work should remain editable across many sessions and revisions.\n\nA project must preserve its materials, decisions, history, and working state so that artists can return, compare alternatives, refine difficult passages, and sustain a coherent direction over time. Continuity is what allows the artist's relationship with their tools and agents to deepen rather than reset with every session.\n\n### Finished artistic work\n\nThe tool should help creators carry their ideas through to meaningful completed work.\n\nEvery blocker that inhibits artists from making original, demanding pieces is worth tackling, whether it is a small irritation or a fundamental limit of the technology. No problem should be beneath our attention or beyond our ambition in that pursuit; we should judge success by the finished work artists can make and stand behind.\n\n## References\n\n**Gap:** [AA-001 — Sustained, ambitious creative work](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/AA-001-sustained-creative-work.md). The [guiding principles](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/README.md#four-driving-principles) apply here too."
     },
     {
       "id": "liquid-software",
@@ -77,7 +77,7 @@
           "detailsMarkdown": "Creators can work with a considered default composition or adapt every layer as needed. Existing components should be reused before inventing another framework; 2D workspaces and spatial experiences should share primitives without making either mandatory."
         }
       ],
-      "bodyMarkdown": "Tools should adapt to creative work as people and agents create together.\n\n“We shape our tools, and thereafter our tools shape us” is a philosophy we should leave in the twentieth century. Astrid is a shared foundation for open, composable creative tools. Their composition and functionality should be adjustable in real time, while people and agents are working. Removing the friction of reshaping software is essential to expanding what we can create, individually and together.\n\n## Characteristics\n\n### A small, dependable foundation\n\nThe shared core should stay understandable and reliable while creative tools evolve around it.\n\nTimelines, media, projects, identities, validated operations, and permissions are durable resources shared by human-facing interfaces and agents. Specialized behavior belongs in reusable components and packs; extend the core only for genuinely shared needs.\n\n### Live tool composition\n\nCreators and agents should be able to reshape their tools without interrupting creative work.\n\nEvery interface component should be dockable, floatable, nestable, or spatially arrangeable, while keeping its bindings to the right timeline, selection, playback, and task. Agents should be equally free to reorganize and extend their own tools to accomplish a creative goal, within the creator's permissions. Neither a human nor an agent should lose project state simply because a tool has been rearranged.\n\n### Real-time functionality\n\nThe capabilities of a tool should be adjustable while the creator is using it.\n\nPeople and agents should be able to connect components, change behavior, introduce controls, and install trusted extensions as the creative problem changes. An agent should also be able to extend its own capabilities rather than remain trapped by a fixed initial toolset. Every extension should expose useful ways for others to build on it.\n\n### Shared human–agent work\n\nPeople and agents should act on the same authoritative creative resources.\n\nA pack can provide agent actions and human-facing interfaces around the same timeline or project. Both should observe permissions, avoid overwriting one another's changes, and allow creators to understand and reverse consequential operations.\n\n### Opinionated tools, not extra scaffolding\n\nA good ready-made tool should remain useful without requiring its creator to customize it.\n\nCreators can work with a considered default composition or adapt every layer as needed. Existing components should be reused before inventing another framework; 2D workspaces and spatial experiences should share primitives without making either mandatory.\n\n## References\n\n**Gaps:** [LS-001 — Portable components](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-001-portable-components.md) · [LS-002 — Agent workspace control](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-002-agent-workspace-control.md) · [LS-003 — Full-stack contributions](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-003-full-stack-contributions.md) · [LS-004 — Cross-modal creative foundations](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-004-cross-modal-foundations.md) · [LS-005 — Agent-managed tools](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-005-agent-managed-tools.md).\n\n**Implementation exploration:** [Portable/resizable components](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/24-liquid-workspace/plan.md) · [Composable connections](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/45-component-connections/plan.md) · [Agent workspace operations](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/46-agent-workspace-operations/plan.md) · [Component design input](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/24-liquid-workspace/components.md) · [Pack lifecycle](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/06-packs/plan.md). These are proposals, not proof of shipped capabilities."
+      "bodyMarkdown": "Tools should adapt to creative work as people and agents create together.\n\n“We shape our tools, and thereafter our tools shape us” is a philosophy we should leave in the twentieth century. Astrid is a shared foundation for open, composable creative tools. Their composition and functionality should be adjustable in real time, while people and agents are working. Removing the friction of reshaping software is essential to expanding what we can create, individually and together.\n\n## Characteristics\n\n### A small, dependable foundation\n\nThe shared core should stay understandable and reliable while creative tools evolve around it.\n\nTimelines, media, projects, identities, validated operations, and permissions are durable resources shared by human-facing interfaces and agents. Specialized behavior belongs in reusable components and packs; extend the core only for genuinely shared needs.\n\n### Live tool composition\n\nCreators and agents should be able to reshape their tools without interrupting creative work.\n\nEvery interface component should be dockable, floatable, nestable, or spatially arrangeable, while keeping its bindings to the right timeline, selection, playback, and task. Agents should be equally free to reorganize and extend their own tools to accomplish a creative goal, within the creator's permissions. Neither a human nor an agent should lose project state simply because a tool has been rearranged.\n\n### Real-time functionality\n\nThe capabilities of a tool should be adjustable while the creator is using it.\n\nPeople and agents should be able to connect components, change behavior, introduce controls, and install trusted extensions as the creative problem changes. An agent should also be able to extend its own capabilities rather than remain trapped by a fixed initial toolset. Every extension should expose useful ways for others to build on it.\n\n### Shared human–agent work\n\nPeople and agents should act on the same authoritative creative resources.\n\nA pack can provide agent actions and human-facing interfaces around the same timeline or project. Both should observe permissions, avoid overwriting one another's changes, and allow creators to understand and reverse consequential operations.\n\n### Opinionated tools, not extra scaffolding\n\nA good ready-made tool should remain useful without requiring its creator to customize it.\n\nCreators can work with a considered default composition or adapt every layer as needed. Existing components should be reused before inventing another framework; 2D workspaces and spatial experiences should share primitives without making either mandatory.\n\n## References\n\n**Gaps:** [LS-001 — Portable components](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-001-portable-components.md) · [LS-002 — Agent workspace control](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-002-agent-workspace-control.md) · [LS-003 — Full-stack contributions](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-003-full-stack-contributions.md) · [LS-004 — Cross-modal creative foundations](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-004-cross-modal-foundations.md) · [LS-005 — Agent-managed tools](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-005-agent-managed-tools.md).\n\n**Implementation exploration:** [Portable/resizable components](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/24-liquid-workspace/plan.md) · [Composable connections](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/45-component-connections/plan.md) · [Agent workspace operations](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/46-agent-workspace-operations/plan.md) · [Component design input](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/24-liquid-workspace/components.md) · [Pack lifecycle](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/06-packs/plan.md). These are proposals, not proof of shipped capabilities."
     },
     {
       "id": "compounding-intelligence",
@@ -105,7 +105,7 @@
           "detailsMarkdown": "Local, team, and community knowledge remain under their respective owners' authority. Useful findings can flow between them with attribution, permission, and the ability to withhold or revoke access."
         }
       ],
-      "bodyMarkdown": "What anyone learns should become something everyone can build on.\n\nWe want every meaningful creative and technical discovery to strengthen future work. When knowledge is shared, an agent should be able to find relevant past experience, test it against the present task, use it to make progress, and share what it learns for others to build on. That knowledge should compound across creators and communities without taking ownership or judgment away from them.\n\n## Characteristics\n\n### An ecosystem of wisdom grounded in real work\n\nCreative experience should become useful, testable knowledge that others can build on.\n\nBefore acting, an agent can look for applicable prior experience. During work it distinguishes evidence from assumptions; afterward it retains reusable lessons with relevant conditions, source versions, failures, and counterexamples.\n\n### Use knowledge with judgment\n\nShared knowledge should be evaluated rather than treated as unquestionable instruction.\n\nA finding may depend on a particular model, creative task, environment, or source revision. Agents must check that it still applies and preserve disagreements, uncertainty, and stale evidence when making decisions.\n\n### Share without surrendering control\n\nCreators should decide which discoveries stay private and which can help others.\n\nLocal, team, and community knowledge remain under their respective owners' authority. Useful findings can flow between them with attribution, permission, and the ability to withhold or revoke access.\n\n## References\n\n[CI-003 — Public source ingestion](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CI-003-public-source-ingestion.md) is a separate gap from Hivemind federation and agent learning.\n\n[Banodoco Hivemind](https://github.com/banodoco/hivemind) is a proving ground, not proof that federation is solved.\n\n**Gaps:** [CI-001 — Agent learning loop](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CI-001-agent-learning-loop.md) · [CI-002 — Federated knowledge](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CI-002-federated-knowledge.md).\n\n**Implementation exploration:** [Federation protocol](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/22-hivemind-protocol/plan.md) · [Protocol proposal](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/22-hivemind-protocol/protocol-proposal.md) · [Agent learning](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/23-agent-learning-integration/plan.md) · [Learning-loop design](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/23-agent-learning-integration/learning-loop.md)."
+      "bodyMarkdown": "What anyone learns should become something everyone can build on.\n\nWe want every meaningful creative and technical discovery to strengthen future work. When knowledge is shared, an agent should be able to find relevant past experience, test it against the present task, use it to make progress, and share what it learns for others to build on. That knowledge should compound across creators and communities without taking ownership or judgment away from them.\n\n## Characteristics\n\n### An ecosystem of wisdom grounded in real work\n\nCreative experience should become useful, testable knowledge that others can build on.\n\nBefore acting, an agent can look for applicable prior experience. During work it distinguishes evidence from assumptions; afterward it retains reusable lessons with relevant conditions, source versions, failures, and counterexamples.\n\n### Use knowledge with judgment\n\nShared knowledge should be evaluated rather than treated as unquestionable instruction.\n\nA finding may depend on a particular model, creative task, environment, or source revision. Agents must check that it still applies and preserve disagreements, uncertainty, and stale evidence when making decisions.\n\n### Share without surrendering control\n\nCreators should decide which discoveries stay private and which can help others.\n\nLocal, team, and community knowledge remain under their respective owners' authority. Useful findings can flow between them with attribution, permission, and the ability to withhold or revoke access.\n\n## References\n\n[CI-003 — Public source ingestion](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CI-003-public-source-ingestion.md) is a separate gap from Hivemind federation and agent learning.\n\n[Banodoco Hivemind](https://github.com/banodoco/hivemind) is a proving ground, not proof that federation is solved.\n\n**Gaps:** [CI-001 — Agent learning loop](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CI-001-agent-learning-loop.md) · [CI-002 — Federated knowledge](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CI-002-federated-knowledge.md).\n\n**Implementation exploration:** [Federation protocol](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/22-hivemind-protocol/plan.md) · [Protocol proposal](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/22-hivemind-protocol/protocol-proposal.md) · [Agent learning](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/23-agent-learning-integration/plan.md) · [Learning-loop design](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/23-agent-learning-integration/learning-loop.md)."
     },
     {
       "id": "shared-endeavour",
@@ -133,7 +133,7 @@
           "detailsMarkdown": "The stated ambition includes ownership in the company behind the collective for people who advance its mission. Eligibility, allocation, governance, financing, and legal and tax implementation remain unresolved; this vision does not grant equity or promise a particular allocation."
         }
       ],
-      "bodyMarkdown": "We want to create the conditions for the community to do more together.\n\nWe want a collective that inspires people to attempt more demanding artistic and technical work, helping them grow through collaboration and critique. We also want to reward meaningful contributions by sharing ownership in the company with people who advance our core product and wider ecosystem. An Astrid-centered culture and a legally workable ownership model still need to be established.\n\n## Characteristics\n\n### Shared challenges and ambition\n\nChallenges and collaborations should encourage artists to attempt work beyond their previous limits.\n\nCompetitions and collective projects should be designed around artistic intent, fair participation, completed work, and learning—not simply attention or participation metrics.\n\n### Critique and mutual growth\n\nCreators should be able to learn from one another's practice and judgment.\n\nMentorship, thoughtful feedback, shared techniques, and recognition of exceptional work should build confidence and capability across the community, including for people approaching unfamiliar media or tools.\n\n### A meaningful stake in the collective\n\nContributors should have a genuine opportunity to benefit from advancing the shared mission.\n\nThe stated ambition includes ownership in the company behind the collective for people who advance its mission. Eligibility, allocation, governance, financing, and legal and tax implementation remain unresolved; this vision does not grant equity or promise a particular allocation.\n\n## References\n\n[CA-004 — Discovering each other's contributions](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-004-sharing-and-discovery.md) makes reusable work visible to people and their agents.\n\n**Gaps:** [CA-001 — Artistic challenge culture](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-001-creative-challenge-culture.md) · [CA-002 — Contributor ownership](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-002-contributor-ownership.md)."
+      "bodyMarkdown": "We want to create the conditions for the community to do more together.\n\nWe want a collective that inspires people to attempt more demanding artistic and technical work, helping them grow through collaboration and critique. We also want to reward meaningful contributions by sharing ownership in the company with people who advance our core product and wider ecosystem. An Astrid-centered culture and a legally workable ownership model still need to be established.\n\n## Characteristics\n\n### Shared challenges and ambition\n\nChallenges and collaborations should encourage artists to attempt work beyond their previous limits.\n\nCompetitions and collective projects should be designed around artistic intent, fair participation, completed work, and learning—not simply attention or participation metrics.\n\n### Critique and mutual growth\n\nCreators should be able to learn from one another's practice and judgment.\n\nMentorship, thoughtful feedback, shared techniques, and recognition of exceptional work should build confidence and capability across the community, including for people approaching unfamiliar media or tools.\n\n### A meaningful stake in the collective\n\nContributors should have a genuine opportunity to benefit from advancing the shared mission.\n\nThe stated ambition includes ownership in the company behind the collective for people who advance its mission. Eligibility, allocation, governance, financing, and legal and tax implementation remain unresolved; this vision does not grant equity or promise a particular allocation.\n\n## References\n\n[CA-004 — Discovering each other's contributions](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-004-sharing-and-discovery.md) makes reusable work visible to people and their agents.\n\n**Gaps:** [CA-001 — Artistic challenge culture](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-001-creative-challenge-culture.md) · [CA-002 — Contributor ownership](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-002-contributor-ownership.md)."
     }
   ],
   "principles": [
@@ -168,7 +168,7 @@
           "detailsMarkdown": "Artists have always shared tips on where to find affordable materials—even cheap turpentine matters when you need the freedom to try things. We want the same spirit in cloud inference: use efficient models and infrastructure, make costs easy to compare, and seek the least expensive suitable route to a creative result. Frugality should broaden experimentation without sacrificing quality, privacy, or the creator's choices."
         }
       ],
-      "bodyMarkdown": "Everything should be designed to run fully locally, and cheaply and conveniently in the cloud.\n\nAstrid should be built so that creative work can happen entirely on your machine, even offline, with your projects and files under your control. The same work should be convenient and inexpensive to run in the cloud when helpful. People and their agents should choose where work happens, what is shared, and what it costs.\n\n## Characteristics\n\n### Local work as the default\n\nCreators should be able to make and preserve work on their own computers.\n\nThe local project should remain authoritative when the creator chooses a local-first workflow. They can inspect, reopen, revise, and retain the underlying files without depending on a permanent cloud connection.\n\n### Optional cloud capabilities\n\nRemote computation should extend local work without quietly taking it over.\n\nCreators and their agents can explicitly select hosted models, remote agents, or rendering services when those are useful. Results should return to the correct project, with clear data boundaries.\n\n### Clear boundaries and costs\n\nThe creator should know where work runs and what leaves their machine.\n\nChoices about uploaded data, remote storage, permissions, services, and costs should be visible and revocable where possible, so convenience does not obscure control.\n\n### Cloud as frugal as possible\n\nCloud tools should be inexpensive enough to encourage experimentation rather than ration it.\n\nArtists have always shared tips on where to find affordable materials—even cheap turpentine matters when you need the freedom to try things. We want the same spirit in cloud inference: use efficient models and infrastructure, make costs easy to compare, and seek the least expensive suitable route to a creative result. Frugality should broaden experimentation without sacrificing quality, privacy, or the creator's choices.\n\n## References\n\nRelated work is tracked in the [vision gap catalog](https://github.com/banodoco/astrid-dev/tree/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps)."
+      "bodyMarkdown": "Everything should be designed to run fully locally, and cheaply and conveniently in the cloud.\n\nAstrid should be built so that creative work can happen entirely on your machine, even offline, with your projects and files under your control. The same work should be convenient and inexpensive to run in the cloud when helpful. People and their agents should choose where work happens, what is shared, and what it costs.\n\n## Characteristics\n\n### Local work as the default\n\nCreators should be able to make and preserve work on their own computers.\n\nThe local project should remain authoritative when the creator chooses a local-first workflow. They can inspect, reopen, revise, and retain the underlying files without depending on a permanent cloud connection.\n\n### Optional cloud capabilities\n\nRemote computation should extend local work without quietly taking it over.\n\nCreators and their agents can explicitly select hosted models, remote agents, or rendering services when those are useful. Results should return to the correct project, with clear data boundaries.\n\n### Clear boundaries and costs\n\nThe creator should know where work runs and what leaves their machine.\n\nChoices about uploaded data, remote storage, permissions, services, and costs should be visible and revocable where possible, so convenience does not obscure control.\n\n### Cloud as frugal as possible\n\nCloud tools should be inexpensive enough to encourage experimentation rather than ration it.\n\nArtists have always shared tips on where to find affordable materials—even cheap turpentine matters when you need the freedom to try things. We want the same spirit in cloud inference: use efficient models and infrastructure, make costs easy to compare, and seek the least expensive suitable route to a creative result. Frugality should broaden experimentation without sacrificing quality, privacy, or the creator's choices.\n\n## References\n\nRelated work is tracked in the [vision gap catalog](https://github.com/banodoco/astrid-dev/tree/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps)."
     },
     {
       "id": "open-by-design",
@@ -201,7 +201,7 @@
           "detailsMarkdown": "With the creator's permission, useful workflows, agent discoveries, failures, model choices, and knowledge from actual projects should be shareable with attribution and context. We should openly explain the relationship between our vision, experiments, implementation, results, and remaining gaps; we have not made that relationship sufficiently clear yet. Private material and sensitive information stay under their owners' control."
         }
       ],
-      "bodyMarkdown": "We want to open not just our code, but our knowledge, ideas, and even our ownership.\n\nOur code is open, but openness should reach further: to our evolving vision, experiments, decisions, execution, and what remains unfinished. Knowledge and ideas should be reusable, with creators deciding what private work they share. We also aspire to share company ownership with meaningful contributors; the eligibility, allocation, and legal implementation of that commitment are not yet settled.\n\n## Characteristics\n\n### Inspectable foundations\n\nAnyone should be able to trace how the tools they depend on actually work.\n\nSource code, models, interfaces, tests, and documented behavior should make it possible to investigate how a tool works, where its limitations lie, and which decisions shaped it. Openness should extend to the reasoning behind our technical and strategic choices, not just the resulting artifacts.\n\n### Forking must be real\n\nThe right to adapt a tool should be practical, not merely a line in a license.\n\nCreators should be able to inspect, copy, modify, replace, and independently maintain the components they depend on, within the rights of their licenses. Portable projects, understandable interfaces, and replaceable providers make the freedom to fork a real option rather than a theoretical promise.\n\n### Built for reuse\n\nEvery useful component should make it easier for someone else to build the next thing.\n\nReusable contributions are a design requirement, not an afterthought. Clear extension points, open formats, and capabilities that compose with existing ones should turn individual inventions into a shared foundation rather than a collection of isolated tools.\n\n### Open decisions and working knowledge\n\nWe should share how things really work, not only the code that implements them.\n\nWith the creator's permission, useful workflows, agent discoveries, failures, model choices, and knowledge from actual projects should be shareable with attribution and context. We should openly explain the relationship between our vision, experiments, implementation, results, and remaining gaps; we have not made that relationship sufficiently clear yet. Private material and sensitive information stay under their owners' control.\n\n## References\n\nRelated work is tracked in the [vision gap catalog](https://github.com/banodoco/astrid-dev/tree/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps), including [CA-003 — Public vision and progress are not yet clearly connected](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-003-vision-experiments-progress.md) and [CA-002 — Contributor ownership](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-002-contributor-ownership.md)."
+      "bodyMarkdown": "We want to open not just our code, but our knowledge, ideas, and even our ownership.\n\nOur code is open, but openness should reach further: to our evolving vision, experiments, decisions, execution, and what remains unfinished. Knowledge and ideas should be reusable, with creators deciding what private work they share. We also aspire to share company ownership with meaningful contributors; the eligibility, allocation, and legal implementation of that commitment are not yet settled.\n\n## Characteristics\n\n### Inspectable foundations\n\nAnyone should be able to trace how the tools they depend on actually work.\n\nSource code, models, interfaces, tests, and documented behavior should make it possible to investigate how a tool works, where its limitations lie, and which decisions shaped it. Openness should extend to the reasoning behind our technical and strategic choices, not just the resulting artifacts.\n\n### Forking must be real\n\nThe right to adapt a tool should be practical, not merely a line in a license.\n\nCreators should be able to inspect, copy, modify, replace, and independently maintain the components they depend on, within the rights of their licenses. Portable projects, understandable interfaces, and replaceable providers make the freedom to fork a real option rather than a theoretical promise.\n\n### Built for reuse\n\nEvery useful component should make it easier for someone else to build the next thing.\n\nReusable contributions are a design requirement, not an afterthought. Clear extension points, open formats, and capabilities that compose with existing ones should turn individual inventions into a shared foundation rather than a collection of isolated tools.\n\n### Open decisions and working knowledge\n\nWe should share how things really work, not only the code that implements them.\n\nWith the creator's permission, useful workflows, agent discoveries, failures, model choices, and knowledge from actual projects should be shareable with attribution and context. We should openly explain the relationship between our vision, experiments, implementation, results, and remaining gaps; we have not made that relationship sufficiently clear yet. Private material and sensitive information stay under their owners' control.\n\n## References\n\nRelated work is tracked in the [vision gap catalog](https://github.com/banodoco/astrid-dev/tree/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps), including [CA-003 — Public vision and progress are not yet clearly connected](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-003-vision-experiments-progress.md) and [CA-002 — Contributor ownership](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-002-contributor-ownership.md)."
     },
     {
       "id": "in-the-creators-control",
@@ -228,7 +228,7 @@
           "detailsMarkdown": "Interfaces should show the meaningful consequences of decisions, support correction and recovery, and make it possible to undo or refuse risky changes rather than treating control as an advanced setting."
         }
       ],
-      "bodyMarkdown": "Creators should have final say over every part of their creative environments.\n\nAstrid should make it possible to choose features and services, control agent permissions, and decide what stays private or becomes shared. Even core workings should be adaptable, without requiring artists to become experts in the underlying technology.\n\n## Characteristics\n\n### Control at every layer\n\nCreators should be able to change the capabilities they rely on.\n\nThey can choose, inspect, replace, or extend features and services, including fundamental parts of the environment, while keeping the work and its history understandable.\n\n### Explicit permissions and privacy\n\nAgents should act within boundaries the creator can understand and change.\n\nAccess to files, networks, services, and spending must be scoped and inspectable. Creators should be able to deny or revoke permissions and decide what information is retained or shared.\n\n### Approachable, reversible choices\n\nControl should be easy to exercise without technical expertise.\n\nInterfaces should show the meaningful consequences of decisions, support correction and recovery, and make it possible to undo or refuse risky changes rather than treating control as an advanced setting.\n\n## References\n\nRelated work is tracked in the [vision gap catalog](https://github.com/banodoco/astrid-dev/tree/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps)."
+      "bodyMarkdown": "Creators should have final say over every part of their creative environments.\n\nAstrid should make it possible to choose features and services, control agent permissions, and decide what stays private or becomes shared. Even core workings should be adaptable, without requiring artists to become experts in the underlying technology.\n\n## Characteristics\n\n### Control at every layer\n\nCreators should be able to change the capabilities they rely on.\n\nThey can choose, inspect, replace, or extend features and services, including fundamental parts of the environment, while keeping the work and its history understandable.\n\n### Explicit permissions and privacy\n\nAgents should act within boundaries the creator can understand and change.\n\nAccess to files, networks, services, and spending must be scoped and inspectable. Creators should be able to deny or revoke permissions and decide what information is retained or shared.\n\n### Approachable, reversible choices\n\nControl should be easy to exercise without technical expertise.\n\nInterfaces should show the meaningful consequences of decisions, support correction and recovery, and make it possible to undo or refuse risky changes rather than treating control as an advanced setting.\n\n## References\n\nRelated work is tracked in the [vision gap catalog](https://github.com/banodoco/astrid-dev/tree/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps)."
     },
     {
       "id": "eliminate-needless-technical-wrangling",
@@ -255,14 +255,14 @@
           "detailsMarkdown": "Creators should understand the boundaries of agent actions and be able to approve, refuse, or revise consequential decisions, even when routine technical work is handled for them."
         }
       ],
-      "bodyMarkdown": "Technical wrangling should be work for your agents, not work that interrupts your art.\n\nModels still need installing, environments still break, and jobs still fail. The aim is not to pretend this work disappears, but to empower agents to handle it: setting up and maintaining tools, managing dependencies, running jobs, and recovering from problems. Artists should stay immersed in creating while retaining control over consequential decisions.\n\n## Characteristics\n\n### Agents handle the setup\n\nYour agent should make a tool ready to use, not hand you another setup guide.\n\nAgents should find, install, configure, and update supported tools and models, resolve dependencies, and explain the decisions that genuinely require the creator's approval. The technical work remains real, but it should be streamlined through agents instead of transferred to the artist.\n\n### Dependable execution and recovery\n\nAgents should operate and repair creative tools without losing the artist's work.\n\nAgents can monitor jobs, diagnose interruptions, handle recoverable failures, and arrange retries or rollback without losing the project, output, or creative intent. When they cannot safely repair something, they should surface a clear problem and options rather than leave the creator wrestling with an environment.\n\n### Important decisions stay visible\n\nAutomation should not hide choices about permissions, cost, or where work runs.\n\nCreators should understand the boundaries of agent actions and be able to approve, refuse, or revise consequential decisions, even when routine technical work is handled for them.\n\n## References\n\nRelated work is tracked in the [vision gap catalog](https://github.com/banodoco/astrid-dev/tree/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps)."
+      "bodyMarkdown": "Technical wrangling should be work for your agents, not work that interrupts your art.\n\nModels still need installing, environments still break, and jobs still fail. The aim is not to pretend this work disappears, but to empower agents to handle it: setting up and maintaining tools, managing dependencies, running jobs, and recovering from problems. Artists should stay immersed in creating while retaining control over consequential decisions.\n\n## Characteristics\n\n### Agents handle the setup\n\nYour agent should make a tool ready to use, not hand you another setup guide.\n\nAgents should find, install, configure, and update supported tools and models, resolve dependencies, and explain the decisions that genuinely require the creator's approval. The technical work remains real, but it should be streamlined through agents instead of transferred to the artist.\n\n### Dependable execution and recovery\n\nAgents should operate and repair creative tools without losing the artist's work.\n\nAgents can monitor jobs, diagnose interruptions, handle recoverable failures, and arrange retries or rollback without losing the project, output, or creative intent. When they cannot safely repair something, they should surface a clear problem and options rather than leave the creator wrestling with an environment.\n\n### Important decisions stay visible\n\nAutomation should not hide choices about permissions, cost, or where work runs.\n\nCreators should understand the boundaries of agent actions and be able to approve, refuse, or revise consequential decisions, even when routine technical work is handled for them.\n\n## References\n\nRelated work is tracked in the [vision gap catalog](https://github.com/banodoco/astrid-dev/tree/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps)."
     }
   ],
   "gaps": [
     {
       "id": "AA-001",
       "title": "Astrid hasn't yet proven it can sustain ambitious work end to end",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/AA-001-sustained-creative-work.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/AA-001-sustained-creative-work.md",
       "assessment": "open",
       "assessmentDetail": "Open, initial source assessment (2026-11-06); not a live product qualification.",
       "appliesTo": [
@@ -278,7 +278,7 @@
     {
       "id": "CA-001",
       "title": "Astrid doesn't yet have a culture where creatives thrive",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-001-creative-challenge-culture.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-001-creative-challenge-culture.md",
       "assessment": "open",
       "assessmentDetail": "Open; prior Banodoco competitions, but no established Astrid-specific program/outcome audit.",
       "appliesTo": [
@@ -293,7 +293,7 @@
     {
       "id": "CA-002",
       "title": "No implemented contributor-ownership model",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-002-contributor-ownership.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-002-contributor-ownership.md",
       "assessment": "open",
       "assessmentDetail": "Open; earlier Banodoco arrangement lapsed, Astrid model and legal terms not established.",
       "appliesTo": [
@@ -308,7 +308,7 @@
     {
       "id": "CA-003",
       "title": "Our vision and execution aren't yet fully connected",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-003-vision-experiments-progress.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-003-vision-experiments-progress.md",
       "assessment": "partially evidenced",
       "assessmentDetail": "Partially evidenced (2026-11-09; public vision, gaps and project summaries exist, but their relationship to experiments and execution has not been demonstrated end to end).",
       "appliesTo": [
@@ -317,14 +317,14 @@
       ],
       "primaryAppliesTo": "principle:open-by-design",
       "desiredMarkdown": "Someone outside the core team can understand what Astrid is trying to achieve, why particular experiments or projects were undertaken, what was actually tried, what the evidence showed, what decisions changed, and which gaps remain. This trail should be accessible, candid about failed or abandoned approaches, and kept current as work develops.",
-      "currentMarkdown": "We've been revamping [astrid-dev](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/README.md) and the [public Astrid Vision page](https://astrid.haus/vision) to connect pillars and principles to real gaps and projects. Those are meaningful pieces of transparency, but they still don't demonstrate a consistently maintained, readable chain from ambition through experiments and implementation to evidence, outcomes and changed plans. Existing public documents are a start, not proof that someone can reliably follow that reasoning.",
-      "missingMarkdown": "We have not communicated our vision, the experiments exploring it, actual execution, and the gaps between intention and reality well enough as one connected story. Unlike [CA-001](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-001-creative-challenge-culture.md), this is about public understanding and accountability, not establishing challenges or artistic participation; unlike [CA-002](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-002-contributor-ownership.md), it is not about legally implementing contributor ownership.",
+      "currentMarkdown": "We've been revamping [astrid-dev](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/README.md) and the [public Astrid Vision page](https://astrid.haus/vision) to connect pillars and principles to real gaps and projects. Those are meaningful pieces of transparency, but they still don't demonstrate a consistently maintained, readable chain from ambition through experiments and implementation to evidence, outcomes and changed plans. Existing public documents are a start, not proof that someone can reliably follow that reasoning.",
+      "missingMarkdown": "We have not communicated our vision, the experiments exploring it, actual execution, and the gaps between intention and reality well enough as one connected story. Unlike [CA-001](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-001-creative-challenge-culture.md), this is about public understanding and accountability, not establishing challenges or artistic participation; unlike [CA-002](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-002-contributor-ownership.md), it is not about legally implementing contributor ownership.",
       "closureEvidenceMarkdown": "Publish a maintained public trail for at least three substantive decisions or experiments, each connecting the relevant vision and gap to the hypothesis, work attempted, evidence, outcome, resulting decision, and what remains unresolved.\n\nInclude at least one negative, abandoned, or changed approach without presenting it as success; verify the source links and revisions. Have independent contributors unfamiliar with those efforts locate the rationale and current outcome, record where they were confused, and demonstrate that resulting improvements make the chain understandable. Reassess after subsequent substantive work rather than only at the initial publication."
     },
     {
       "id": "CA-004",
       "title": "Creators and agents can't yet find one another's contributions",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-004-sharing-and-discovery.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-004-sharing-and-discovery.md",
       "assessment": "open",
       "assessmentDetail": "Open; initial assessment (2026-11-10); not implementation proof.",
       "appliesTo": [
@@ -333,14 +333,14 @@
       ],
       "primaryAppliesTo": "pillar:shared-endeavour",
       "desiredMarkdown": "Creators and agents can discover other people's packs, creative components, skills and reusable work in one coherent place, evaluate relevance, provenance, licensing, maintenance and compatibility, and reuse what is appropriate.",
-      "currentMarkdown": "Astrid has agent pack manifests and an emerging [Hivemind](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/22-hivemind-protocol/plan.md), but there is no proven streamlined discovery experience across contributors. Community search and individual links are not the same as a reliable, task-aware index for both people and agents.",
-      "missingMarkdown": "No dependable discovery, indexing, provenance and compatibility path for published creative contributions exists yet. This is distinct from [F-004](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-004-pack-lifecycle.md), which concerns installing/updating a known pack, and [CI-003](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CI-003-public-source-ingestion.md), which concerns intake of external public knowledge.",
+      "currentMarkdown": "Astrid has agent pack manifests and an emerging [Hivemind](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/22-hivemind-protocol/plan.md), but there is no proven streamlined discovery experience across contributors. Community search and individual links are not the same as a reliable, task-aware index for both people and agents.",
+      "missingMarkdown": "No dependable discovery, indexing, provenance and compatibility path for published creative contributions exists yet. This is distinct from [F-004](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-004-pack-lifecycle.md), which concerns installing/updating a known pack, and [CI-003](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CI-003-public-source-ingestion.md), which concerns intake of external public knowledge.",
       "closureEvidenceMarkdown": "An independent contributor publishes a versioned contribution; a creator and an agent separately discover it through relevant search, inspect identity, source, compatibility and trust signals, then follow a supported reuse path. Demonstrate stale, removed, incompatible and untrusted results without automatic install or unauthorized sharing."
     },
     {
       "id": "CA-005",
       "title": "Many contributors and agents can't yet work in parallel through one clear process",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-005-parallel-contribution.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-005-parallel-contribution.md",
       "assessment": "open",
       "assessmentDetail": "Open; initial assessment (2026-11-11) from a read of astrid-dev's own scripts, templates and packs, not from observed work at scale.",
       "appliesTo": [
@@ -349,14 +349,14 @@
       ],
       "primaryAppliesTo": "pillar:shared-endeavour",
       "desiredMarkdown": "Someone new, or their agent, can learn from one place each what kinds of record Astrid's development workspace keeps, what is checked and when, which pages are written by hand and which are generated, and how to extend any of them. Many people and agents can then propose, claim, progress and finish projects at the same time without waiting on, or overwriting, one another.",
-      "currentMarkdown": "The contribution principles, skills, templates and checks exist and a small number of contributors use them daily. As read on 11 Nov 2026 ([findings](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/48-one-record-model/inputs.md#what-exists-today)): there is no list of what is checked; local and CI runs can disagree; one generated-page pipeline exists and is not reusable; several facts have two hand-kept homes; every change to any project's owner, standing or estimate edits one shared table; ten of 47 project plans follow the template; and two projects share a number. This shows structure only. Nothing here has been observed with many contributors working at once.",
-      "missingMarkdown": "The workspace's structure is carried by prose and by separate scripts, so it is hard to learn, hard to extend in one place, and it funnels unrelated work through shared files. Unlike [CA-003](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-003-vision-experiments-progress.md), this is about people being able to work through the process together, not about the public following why work happened; unlike [CA-004](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CA-004-sharing-and-discovery.md), it concerns contributing to Astrid's development, not finding published creative contributions.",
+      "currentMarkdown": "The contribution principles, skills, templates and checks exist and a small number of contributors use them daily. As read on 11 Nov 2026 ([findings](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/48-one-record-model/inputs.md#what-exists-today)): there is no list of what is checked; local and CI runs can disagree; one generated-page pipeline exists and is not reusable; several facts have two hand-kept homes; every change to any project's owner, standing or estimate edits one shared table; ten of 47 project plans follow the template; and two projects share a number. This shows structure only. Nothing here has been observed with many contributors working at once.",
+      "missingMarkdown": "The workspace's structure is carried by prose and by separate scripts, so it is hard to learn, hard to extend in one place, and it funnels unrelated work through shared files. Unlike [CA-003](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-003-vision-experiments-progress.md), this is about people being able to work through the process together, not about the public following why work happened; unlike [CA-004](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CA-004-sharing-and-discovery.md), it concerns contributing to Astrid's development, not finding published creative contributions.",
       "closureEvidenceMarkdown": "- One command lists every check and every generated page, and gives the same result locally and in CI.\n- A new project lands by adding only its own folder. Ten contributors adding or updating different projects from the same starting point all merge without conflict.\n- Each kind of fact has one source. Asked where to change five different facts, a fresh contributor finds each single source from the documentation.\n- A fresh agent adds a check and a generated page from the extension guide alone; its confusions are recorded and resolved.\n- Refusals work: a hand edit to a generated page, a claim made for someone else, and a project marked finished without its completion form are each rejected.\n- Reassessed after a real period in which at least ten contributors worked at the same time, with the process stalls of that period recorded."
     },
     {
       "id": "CI-001",
       "title": "Agents don't yet reliably learn from creative work",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CI-001-agent-learning-loop.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CI-001-agent-learning-loop.md",
       "assessment": "open",
       "assessmentDetail": "Open, source assessment (2026-11-06).",
       "appliesTo": [
@@ -365,14 +365,14 @@
       ],
       "primaryAppliesTo": "pillar:compounding-intelligence",
       "desiredMarkdown": "An agent routinely uses applicable earlier lessons **before** work, captures truthfully observed success or failure **during/after** work, learns within a user-owned private knowledge scope and can propose sanitized contributions to others with explicit permission.",
-      "currentMarkdown": "Astrid Agent has executable creative tools and Runtime task/artifact records. Banodoco Hivemind has an evidence-bearing read/contribution system. The [source map](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/22-hivemind-protocol/inputs.md) **does not establish a complete private/local → community → later-agent learning loop**.",
+      "currentMarkdown": "Astrid Agent has executable creative tools and Runtime task/artifact records. Banodoco Hivemind has an evidence-bearing read/contribution system. The [source map](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/22-hivemind-protocol/inputs.md) **does not establish a complete private/local → community → later-agent learning loop**.",
       "missingMarkdown": "Contextual retrieval, actual run-to-knowledge capture, safe private retention, consented contributions and proven benefits to a second agent session are not yet integrated end to end.",
       "closureEvidenceMarkdown": "Two real agent sessions: the first retrieves applicable knowledge and produces an observed, locally retained result; a subsequent session demonstrably uses that finding. Optional contribution retains provenance and only shares approved, sanitized information. Compare against raw search/no knowledge, including staleness and denial paths."
     },
     {
       "id": "CI-002",
       "title": "Hivemind functionality isn't yet refined and interoperable",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CI-002-federated-knowledge.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CI-002-federated-knowledge.md",
       "assessment": "open",
       "assessmentDetail": "Open, proposal compared with source (2026-11-06).",
       "appliesTo": [
@@ -382,14 +382,14 @@
       ],
       "primaryAppliesTo": "pillar:compounding-intelligence",
       "desiredMarkdown": "Independent personal, team and community knowledge datasets can preserve attribution, conditions, evidence and owner-controlled access while exchanging permitted references and learnings without merging into one central authority.",
-      "currentMarkdown": "[Banodoco Hivemind](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/22-hivemind-protocol/inputs.md) documents source-custodied messages, revisioned resources, an accepted search head and editorial contribution operations. The [uploaded October 29 protocol proposal](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/22-hivemind-protocol/protocol-proposal.md) proposes dataset-scoped entries, typed links and `find`/`inspect`/`contribute`. **These are not yet identical proven contracts.**",
-      "missingMarkdown": "Hivemind's existing functionality and proposed protocol still need refinement and real proof: stable versioned identities, useful references, access decisions and scoped exchange between independently owned datasets. Public-source ingestion belongs to [CI-003](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CI-003-public-source-ingestion.md), rather than being rolled into this gap.",
+      "currentMarkdown": "[Banodoco Hivemind](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/22-hivemind-protocol/inputs.md) documents source-custodied messages, revisioned resources, an accepted search head and editorial contribution operations. The [uploaded October 29 protocol proposal](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/22-hivemind-protocol/protocol-proposal.md) proposes dataset-scoped entries, typed links and `find`/`inspect`/`contribute`. **These are not yet identical proven contracts.**",
+      "missingMarkdown": "Hivemind's existing functionality and proposed protocol still need refinement and real proof: stable versioned identities, useful references, access decisions and scoped exchange between independently owned datasets. Public-source ingestion belongs to [CI-003](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CI-003-public-source-ingestion.md), rather than being rolled into this gap.",
       "closureEvidenceMarkdown": "Two separately owned datasets can exchange a scoped, independently attributed reference or approved sanitized result, preserving revision identity, provenance and access decisions; denied, stale and revoked cases do not leak source content. Banodoco behavior is preserved or safely, explicitly migrated with evidence."
     },
     {
       "id": "CI-003",
       "title": "Hivemind doesn't yet learn from public internet resources",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CI-003-public-source-ingestion.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CI-003-public-source-ingestion.md",
       "assessment": "open",
       "assessmentDetail": "Open; initial assessment (2026-11-10); not implementation proof.",
       "appliesTo": [
@@ -398,14 +398,14 @@
       ],
       "primaryAppliesTo": "pillar:compounding-intelligence",
       "desiredMarkdown": "Hivemind can help agents retrieve relevant knowledge from public GitHub issues and discussions, Reddit, technical documentation and other permitted sources, with attribution, version history, freshness and critical assessment.",
-      "currentMarkdown": "Current [Hivemind source work](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/22-hivemind-protocol/inputs.md) does not establish a maintained cross-source ingestion and freshness pipeline. A proposed federation protocol and community contributions are not proof of wider public knowledge intake.",
-      "missingMarkdown": "Rights-aware source connectors, revision tracking, deduplication, removals, freshness signals and source-grounded retrieval are not yet demonstrated. This is distinct from independent Hivemind federation ([CI-002](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CI-002-federated-knowledge.md)) and learning from Astrid work ([CI-001](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/CI-001-agent-learning-loop.md)).",
+      "currentMarkdown": "Current [Hivemind source work](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/22-hivemind-protocol/inputs.md) does not establish a maintained cross-source ingestion and freshness pipeline. A proposed federation protocol and community contributions are not proof of wider public knowledge intake.",
+      "missingMarkdown": "Rights-aware source connectors, revision tracking, deduplication, removals, freshness signals and source-grounded retrieval are not yet demonstrated. This is distinct from independent Hivemind federation ([CI-002](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CI-002-federated-knowledge.md)) and learning from Astrid work ([CI-001](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/CI-001-agent-learning-loop.md)).",
       "closureEvidenceMarkdown": "Ingest an authorized sample of GitHub issues/discussions, Reddit posts and documentation with source identity and revisions. A real agent retrieves and critically uses relevant evidence. Show updates, conflicting claims, rate limits, removals, permission failures and prompt injection never becoming action authority."
     },
     {
       "id": "F-001",
       "title": "Reliability isn't proven across supported setups",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-001-platform-reliability.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-001-platform-reliability.md",
       "assessment": "partially evidenced",
       "assessmentDetail": "Partially evidenced (2026-11-06; source is existing plan/queue evidence, not a new qualification).",
       "appliesTo": [
@@ -414,14 +414,14 @@
       ],
       "primaryAppliesTo": "principle:eliminate-needless-technical-wrangling",
       "desiredMarkdown": "On each declared supported operating system, device and deployment route, people can reliably install, launch, stop, update, roll back, repair and remove Astrid without losing projects or becoming stranded in an unexplained state. This concerns the application's **operational lifecycle**, not whether every creative workflow succeeds.",
-      "currentMarkdown": "[Plan 29](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/29-update-and-release/plan.md) is reopened: Release 10 (0.0.10) is published, but `install --update` on a machine that already completed the Release 1 storage handoff exits 0 and installs nothing. Less common setups remain in [Plan 30](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/30-update-everywhere/plan.md).\n\n\n[Plan 08](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/08-release1-install-update/plan.md) records a completed five-row hosted R1 installation/update gate, proving that *specific* paths worked on *specific* candidates. The [project queue](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/README.md) records Plan 07 as active with indicative Pinokio evidence and existing CI failures, while Plans 09/10 target broader routes and native qualification. This is **not** proof that all devices, browser variants or real engines are covered.",
+      "currentMarkdown": "[Plan 29](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/29-update-and-release/plan.md) is reopened: Release 10 (0.0.10) is published, but `install --update` on a machine that already completed the Release 1 storage handoff exits 0 and installs nothing. Less common setups remain in [Plan 30](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/30-update-everywhere/plan.md).\n\n\n[Plan 08](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/08-release1-install-update/plan.md) records a completed five-row hosted R1 installation/update gate, proving that *specific* paths worked on *specific* candidates. The [project queue](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/README.md) records Plan 07 as active with indicative Pinokio evidence and existing CI failures, while Plans 09/10 target broader routes and native qualification. This is **not** proof that all devices, browser variants or real engines are covered.",
       "missingMarkdown": "Supported installation, launcher and engine lifecycle transitions—especially updates, failures, rollback, cleanup and recovery—still lack sufficiently broad, current and reproducible qualification. Creative job correctness belongs to F-003; authority over agent actions belongs to F-002.",
       "closureEvidenceMarkdown": "A declared and version-pinned OS/device/deployment matrix demonstrates clean installation, launch, stop, update, interruption recovery, rollback and removal with preserved work and meaningful negative tests. This qualifies supported operational paths, not creative inference accuracy or permission policy."
     },
     {
       "id": "F-002",
       "title": "User control and recovery aren't fully proven",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-002-safe-user-control.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-002-safe-user-control.md",
       "assessment": "open",
       "assessmentDetail": "Open / partly implemented foundations (2026-11-06).",
       "appliesTo": [
@@ -429,14 +429,14 @@
       ],
       "primaryAppliesTo": "principle:in-the-creators-control",
       "desiredMarkdown": "People can understand, grant, limit and revoke what Astrid and its agents may access, change, share or spend, and can recover safely from conflicting or rejected actions. Consequential changes, external effects and resource use follow explicit authority, and a refusal is respected. A sandbox is one safeguard, not the whole definition of creator control.",
-      "currentMarkdown": "Astrid Runtime has versioned project/task authority and the App/Agent have meaningful editing and conflict primitives. [Plan 01](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/01-installer-consent/plan.md) is for installer choice; [Plan 04](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/04-concurrent-edits/plan.md) addresses concurrent edits; [Plan 15](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/15-openshell-safe-execution/plan.md) targets the independent [F-007 sandbox outcome](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-007-first-class-sandbox.md). These are different safeguards; together they **have not yet established this broader user-control outcome**.",
+      "currentMarkdown": "Astrid Runtime has versioned project/task authority and the App/Agent have meaningful editing and conflict primitives. [Plan 01](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/01-installer-consent/plan.md) is for installer choice; [Plan 04](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/04-concurrent-edits/plan.md) addresses concurrent edits; [Plan 15](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/15-openshell-safe-execution/plan.md) targets the independent [F-007 sandbox outcome](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-007-first-class-sandbox.md). These are different safeguards; together they **have not yet established this broader user-control outcome**.",
       "missingMarkdown": "The user's authority over agent/tool actions, data access, external effects, concurrent editing and reversibility has not been proven coherently across representative real workflows. This is about **permissions, consent and control**, distinct from application installation/recovery (F-001) or whether a creative task produces the right result (F-003).",
       "closureEvidenceMarkdown": "Representative real workflows show clear and enforceable grant/deny/revoke permissions, correctly scoped file/network/spend access, handling of concurrent edits, inspectable changes, refusal and undo/recovery after failed or conflicting operations. Isolated execution has its own bounded closure test under F-007; passing it alone does not close this broader gap."
     },
     {
       "id": "F-003",
       "title": "Creative execution isn't yet dependable end to end",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-003-creative-execution.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-003-creative-execution.md",
       "assessment": "open",
       "assessmentDetail": "Open / foundations exist (2026-11-06).",
       "appliesTo": [
@@ -445,14 +445,14 @@
       ],
       "primaryAppliesTo": "principle:eliminate-needless-technical-wrangling",
       "desiredMarkdown": "From a declared supported, usable Astrid workspace, a creator and agent can choose a creative operation, prepare an appropriate model or provider, execute real inference or media processing, and receive the intended **correct, editable creative result** with progress and recoverable failures. The core proof is successful creative work—not reinstalling or updating Astrid.",
-      "currentMarkdown": "Astrid has Runtime execution/task primitives, packs, generation integrations and the video editor. [Plan 02](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/02-consistent-generation/plan.md) aims to establish consistent defaults and pinned stack on fixtures and a fresh Linux CPU setup, **explicitly not real inference**. [Plan 12](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/12-multiple-inference-routes/plan.md) targets real multiple inference routes. [Plan 20](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/20-zero-to-first-image/plan.md) targets a real first generated image on a timeline; [Plan 16](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/16-streamlined-agent-experience/plan.md) improves agent readiness.",
+      "currentMarkdown": "Astrid has Runtime execution/task primitives, packs, generation integrations and the video editor. [Plan 02](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/02-consistent-generation/plan.md) aims to establish consistent defaults and pinned stack on fixtures and a fresh Linux CPU setup, **explicitly not real inference**. [Plan 12](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/12-multiple-inference-routes/plan.md) targets real multiple inference routes. [Plan 20](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/20-zero-to-first-image/plan.md) targets a real first generated image on a timeline; [Plan 16](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/16-streamlined-agent-experience/plan.md) improves agent readiness.",
       "missingMarkdown": "The end-to-end **creative job**—capability selection, model/provider readiness, actual task execution, artifact identity and usable output—has not been dependably proven across selected supported workflows and failure paths. Install/update lifecycle belongs to F-001; approval and access decisions belong to F-002.",
       "closureEvidenceMarkdown": "On a stated supported setup, run real creative generation or processing and inspect the resulting editable artifact for correct content, project identity, output settings and usable timeline/workspace integration. Demonstrate failed-job diagnostics, stop/retry and cleanup; separately qualify platform installation and permission boundaries in F-001/F-002."
     },
     {
       "id": "F-004",
       "title": "Pack installation and upgrades aren't yet proven under demanding conditions",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-004-pack-lifecycle.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-004-pack-lifecycle.md",
       "assessment": "open",
       "assessmentDetail": "Open / partial current mechanisms (2026-11-06).",
       "appliesTo": [
@@ -461,14 +461,14 @@
       ],
       "primaryAppliesTo": "pillar:liquid-software",
       "desiredMarkdown": "Artists and agents can discover, install, enable, use, update, disable and safely roll back supported creative packs and their frontend/backend contributions. Compatibility, source identity, trust, ownership and project reference continuity remain understandable and reliable.",
-      "currentMarkdown": "Agent has manifest-defined packs with actions, skills, UI and rendering contributions. App has trusted bundled extension lifecycle and editor SDK mechanisms. [Plan 06](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/06-packs/plan.md) explicitly targets pack extraction and reliable installation, trust, transaction, rendering and editor integration. [Plan 11](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/11-threejs-pack/plan.md) is a case of converting a first-party feature into a pack, but is not a generic workspace engine.",
+      "currentMarkdown": "Agent has manifest-defined packs with actions, skills, UI and rendering contributions. App has trusted bundled extension lifecycle and editor SDK mechanisms. [Plan 06](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/06-packs/plan.md) explicitly targets pack extraction and reliable installation, trust, transaction, rendering and editor integration. [Plan 11](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/11-threejs-pack/plan.md) is a case of converting a first-party feature into a pack, but is not a generic workspace engine.",
       "missingMarkdown": "We haven't tested a diverse set of demanding frontend, backend and combined packs far enough to expose the limits of the extension system. Installation, real use, upgrade, rollback and recovery need integrated, version-pinned proof across dependency, compatibility, trust, failure and project-state boundaries.",
       "closureEvidenceMarkdown": "Run meaningful frontend-only, backend-only and combined packs against real project data, including substantial interactive UI and long-running processing. Demonstrate install, use, update and rollback with pinned source identity; include dependency conflicts, rejected/untrusted contributions, incompatible versions, failed migrations, interruption and recovery without lost project references. Do not claim arbitrary dynamically generated third-party code can run safely without independent isolation evidence."
     },
     {
       "id": "F-005",
       "title": "Local-first projects can't yet use cloud execution seamlessly",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-005-local-files-cloud-assist.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-005-local-files-cloud-assist.md",
       "assessment": "open",
       "assessmentDetail": "Open; remote routes exist but an integrated cloud-assisted local-files workflow has not been qualified.",
       "appliesTo": [
@@ -485,7 +485,7 @@
     {
       "id": "F-006",
       "title": "Creators can't yet work in Astrid entirely from the cloud",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-006-fully-hosted-workspace.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-006-fully-hosted-workspace.md",
       "assessment": "open",
       "assessmentDetail": "Open; no qualified fully hosted project/database/media lifecycle.",
       "appliesTo": [
@@ -495,14 +495,14 @@
       ],
       "primaryAppliesTo": "principle:local-first-cloud-capable",
       "desiredMarkdown": "A creator can use Astrid from a browser without maintaining a local install. The hosted workspace owns persistent project/database state, files/media, accounts and access controls, while cloud agents, generation and video rendering execute under explicit authorization and clear budgets. Projects can be exported or migrated back into user custody; reliable backup, restore, isolation and deletion are supported.",
-      "currentMarkdown": "Astrid has a browser-capable App, Runtime and cloud/provider execution paths, but the [Cloud-assisted V1 plan](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/25-cloud-assist-v1/plan.md) deliberately **keeps durable files and project database local**. An always-available hosted tenancy, canonical cloud database, durable object storage and migration/recovery contract are not qualified.",
+      "currentMarkdown": "Astrid has a browser-capable App, Runtime and cloud/provider execution paths, but the [Cloud-assisted V1 plan](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/25-cloud-assist-v1/plan.md) deliberately **keeps durable files and project database local**. An always-available hosted tenancy, canonical cloud database, durable object storage and migration/recovery contract are not qualified.",
       "missingMarkdown": "There is no qualified way to start a creative project, keep its working state and files, and return to it in a browser without maintaining a local Astrid install. Durable, account-scoped access, recovery and export are part of that user outcome; the particular database, storage and hosting architecture are choices for implementing it, not the definition of the gap.",
       "closureEvidenceMarkdown": "A new user can open a hosted Astrid workspace in a browser, create a project, save and reopen across sessions/devices, run a generation and render, and observe durable, permission-scoped data; accounts are isolated. Backup/restore, quota, delete, export/migration and interrupted execution are tested. A local-first/offline option remains a distinct supported route rather than being silently replaced."
     },
     {
       "id": "F-007",
       "title": "Running Astrid in a sandbox isn't yet a first-class option",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-007-first-class-sandbox.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-007-first-class-sandbox.md",
       "assessment": "open",
       "assessmentDetail": "Open; sandbox foundations exist, but an integrated, qualified user-facing full-stack path has not been demonstrated (2026-11-07).",
       "appliesTo": [
@@ -511,14 +511,14 @@
       ],
       "primaryAppliesTo": "principle:in-the-creators-control",
       "desiredMarkdown": "People can choose to run Astrid's creative environment—App, Agent, Runtime and permitted tools—in an isolated sandbox as a normal, understandable setup option. They can grant and revoke access to host files, credentials, network destinations, external inference services and compute resources without needing to manage low-level containment themselves. They can work, stop and recover predictably, and understand any integrations that cross the isolation boundary.",
-      "currentMarkdown": "There is relevant ongoing work: [Astrid Agent PR #109](https://github.com/banodoco/astrid-agent/pull/109) contains OpenShell sandbox setup and controls, and [Plan 15](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/15-openshell-safe-execution/plan.md) covers an integrated full-stack option. Current Agent sources include sandbox scripts, but their existence does not demonstrate a supported, first-class end-to-end user experience or verified isolation across the App, Agent and Runtime. The PR was open when checked on 2026-11-07; environment and platform qualification remain to be established.",
+      "currentMarkdown": "There is relevant ongoing work: [Astrid Agent PR #109](https://github.com/banodoco/astrid-agent/pull/109) contains OpenShell sandbox setup and controls, and [Plan 15](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/15-openshell-safe-execution/plan.md) covers an integrated full-stack option. Current Agent sources include sandbox scripts, but their existence does not demonstrate a supported, first-class end-to-end user experience or verified isolation across the App, Agent and Runtime. The PR was open when checked on 2026-11-07; environment and platform qualification remain to be established.",
       "missingMarkdown": "There is no proven, user-friendly path for selecting, starting and using a **fully isolated Astrid workspace** with understandable permissions and boundaries. The outcome is independent of a particular sandbox technology: OpenShell is one possible implementation, not the definition of the gap.",
-      "closureEvidenceMarkdown": "On a declared supported platform, a user can choose the sandbox mode, start the required stack, perform an approved creative job, stop and restart, and recover their project. Show positive and negative checks for permissions to host files/credentials, network and external inference, including denied actions, cancellation and safe teardown. Document what runs inside versus outside, any opted-in host integration, and residual risks. This proves a bounded supported isolation option, not universal security or a complete answer to [the broader user-control gap F-002](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-002-safe-user-control.md)."
+      "closureEvidenceMarkdown": "On a declared supported platform, a user can choose the sandbox mode, start the required stack, perform an approved creative job, stop and restart, and recover their project. Show positive and negative checks for permissions to host files/credentials, network and external inference, including denied actions, cancellation and safe teardown. Document what runs inside versus outside, any opted-in host integration, and residual risks. This proves a bounded supported isolation option, not universal security or a complete answer to [the broader user-control gap F-002](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-002-safe-user-control.md)."
     },
     {
       "id": "F-008",
       "title": "Generation isn't yet one portable, extensible path across machines and inference engines",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-008-portable-generation.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-008-portable-generation.md",
       "assessment": "open",
       "assessmentDetail": "Open; path review and live RunPod attempts (2026-11-08).",
       "appliesTo": [
@@ -530,13 +530,13 @@
       "primaryAppliesTo": "principle:eliminate-needless-technical-wrangling",
       "desiredMarkdown": "Any generation, in any modality (image, edit, video, voice, music, sound effects and composed workflows such as h3_av), runs through **one path**:\n1. Declare what the request needs: custom nodes and models.\n2. Choose where it runs once: this machine and a chosen local GPU, a user's own server, or a rented GPU machine such as RunPod. There is a default the creator sets and can change per generation.\n3. Optionally bring that machine in line with the needs (align, only check, or trust what is there).\n4. Run it on the chosen inference engine. ComfyUI through VibeComfy comes first; others such as Wan2GP follow.\n5. Get the result back.\n\nA rented machine behaves like any other machine: it runs the same path. It can be reused while warm, and it keeps models on attached storage so they are downloaded once. **Every level is a replaceable piece**, extended through a declared contract rather than a core change:\n- **workflows:** a VibeComfy plugin adds templates such as h3_av;\n- **engines:** ComfyUI, Wan2GP;\n- **machines and providers:** local GPU, a user's server, RunPod, another rented-GPU provider.\n\nAdding one reuses the rest of the path rather than adding per-modality or per-pack routes.",
       "currentMarkdown": "- **On RunPod, live attempts on 7–8 Nov 2026 produced image and edit; voice and music did not produce an output.**\n  - Placement is re-decided in several places.\n  - A rented pod is driven as a remote ComfyUI, so checks ran against the controller's disk.\n  - Every fresh pod downloads one fixed 95.8 GB model bundle, whatever the job.\n  - Pods can't be reused across jobs, and the storage volume is used only off the main path.\n- **Some slots don't follow the common path.**\n  - Sound effects is refused on RunPod.\n  - h3_av has its own pod route.\n  - About 50 sites branch by modality.\n- **Building blocks exist but are not on one path.** VibeComfy already offers requirements, node install, model fetch and run commands that the Agent partly duplicates.\n- **Only one engine works.** Wan2GP is a stub.\n\nThe evidence is the merge-run path review in `banodoco/astrid-overnight-2026-11-05`, branch `merge-run/2026-11-07`, `merge-run/path-review/` (VISION, HOLISTIC, EXISTING-MACHINERY and the audits).",
-      "missingMarkdown": "There is no single, engine-neutral generation path whose placement is decided once, and its levels (workflows, engines, machines) can't yet be extended independently. Creators can't freely choose and change where a generation runs, or which inference engine runs it, and get the same behaviour, setup and result every time. Distinct from [F-003](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-003-creative-execution.md), which is about one creative job being dependable end to end on a stated setup, and from [F-005](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-005-local-files-cloud-assist.md), which is about the local-data and cloud-execution product boundary.",
+      "missingMarkdown": "There is no single, engine-neutral generation path whose placement is decided once, and its levels (workflows, engines, machines) can't yet be extended independently. Creators can't freely choose and change where a generation runs, or which inference engine runs it, and get the same behaviour, setup and result every time. Distinct from [F-003](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-003-creative-execution.md), which is about one creative job being dependable end to end on a stated setup, and from [F-005](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-005-local-files-cloud-assist.md), which is about the local-data and cloud-execution product boundary.",
       "closureEvidenceMarkdown": "**Same request, different machines.** The same generation request, for every default slot plus h3_av, produces its result through the same code path on:\n- a local GPU;\n- a user's own ComfyUI;\n- a rented RunPod machine.\n\n**Placement is one decision.** A default placement is set and overridden for a single generation.\n\n**Rented machines are efficient.**\n- A second job reuses a warm machine.\n- Models already on attached storage are not downloaded again.\n- Align, check and trust behave the same everywhere.\n\n**Each level extends independently.**\n- A second inference engine (Wan2GP) runs a generation through the same placement, lease and machine route, adding only its own setup and run step.\n- A workflow added as a VibeComfy plugin (h3_av) runs with no plugin-specific code in Astrid's core.\n- A further kind of machine or provider can be added behind the same placement and lease contract, shown at least with a test provider, without changing the path.\n\n**One path in the code.** Source inspection shows one placement decision site, one submit and one retrieve, and no per-modality branch on the path.\n\n**Negative cases:** a missing model fails before submit, naming the machine; an expired lease releases the machine; no orphaned machine remains."
     },
     {
       "id": "LS-001",
       "title": "Creative components can't yet move freely",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-001-portable-components.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-001-portable-components.md",
       "assessment": "open",
       "assessmentDetail": "Open, source inspection (2026-11-06).",
       "appliesTo": [
@@ -545,14 +545,14 @@
       ],
       "primaryAppliesTo": "pillar:liquid-software",
       "desiredMarkdown": "Real creative components (timeline, player, inspector, gallery and others) can move, dock, resize, float and nest within a declarative workspace without losing their state, supported behavior or resource bindings.",
-      "currentMarkdown": "The [App source map](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/24-liquid-workspace/inputs.md) identifies actual reusable editor views and a custom two-pane assembly. The standard editor shell still includes host-specific layout, gesture and context responsibilities. **This does not establish a general-purpose portable workspace host.**",
+      "currentMarkdown": "The [App source map](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/24-liquid-workspace/inputs.md) identifies actual reusable editor views and a custom two-pane assembly. The standard editor shell still includes host-specific layout, gesture and context responsibilities. **This does not establish a general-purpose portable workspace host.**",
       "missingMarkdown": "Component definitions, instances, presentation lifecycle, resizing and positioning are not yet proven independently portable across workspace layouts and creative domains. Responsive behavior and stable state during docking, nesting and container resizing are essential parts of this gap.",
       "closureEvidenceMarkdown": "Rearrange the **real** player, inspector and timeline; retain playback, editing, selection and recovery state; save/restore the layout. Then host a genuinely different domain component using the same contract, without modifying the main editor shell."
     },
     {
       "id": "LS-002",
       "title": "Agents can't yet reconfigure the workspace",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-002-agent-workspace-control.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-002-agent-workspace-control.md",
       "assessment": "open",
       "assessmentDetail": "Open, source inspection (2026-11-06).",
       "appliesTo": [
@@ -561,14 +561,14 @@
       ],
       "primaryAppliesTo": "pillar:liquid-software",
       "desiredMarkdown": "An agent and a person use the same supported workspace operations to open, place, attach, bind, focus and restore component instances. Changes are inspectable, scoped, reversible and compatible with live creative work.",
-      "currentMarkdown": "Astrid Agent has pack/skill/action discovery. Astrid App has extensions, commands and scoped editing contexts. The [source review](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/24-liquid-workspace/inputs.md) has **not** established a public, domain-neutral workspace manipulation API.",
+      "currentMarkdown": "Astrid Agent has pack/skill/action discovery. Astrid App has extensions, commands and scoped editing contexts. The [source review](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/24-liquid-workspace/inputs.md) has **not** established a public, domain-neutral workspace manipulation API.",
       "missingMarkdown": "Spatial **placement/attachment** and functional **resource binding** need explicit, validated operations; proximity alone must not silently connect data. Agents should compose existing software without generating frontend code for ordinary layout changes.",
       "closureEvidenceMarkdown": "An agent arranges the same real components as a user, binds the correct timeline/selection/clock, offers reversible operations, does not clobber user edits, and restores a prior workspace from a saved representation."
     },
     {
       "id": "LS-003",
       "title": "Frontend and backend extensions don't yet compose",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-003-full-stack-contributions.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-003-full-stack-contributions.md",
       "assessment": "open",
       "assessmentDetail": "Open, source inspection (2026-11-06).",
       "appliesTo": [
@@ -584,7 +584,7 @@
     {
       "id": "LS-004",
       "title": "A creative ecosystem across modalities isn't yet established",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-004-cross-modal-foundations.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-004-cross-modal-foundations.md",
       "assessment": "open",
       "assessmentDetail": "Open; vision and draft-plan assessment (2026-11-07), not a qualification of current product coverage.",
       "appliesTo": [
@@ -594,14 +594,14 @@
       ],
       "primaryAppliesTo": "pillar:liquid-software",
       "desiredMarkdown": "Astrid grows into an open ecosystem of powerful, agent-native, deeply extensible creative foundations across video, images, music, 3D and further modalities. The collective and independent contributors can create, publish, adapt and maintain these foundations; other people and agents can build additional tools and capabilities on top of them, combine them and make ambitious work without forking Astrid's core. Video is a deliberate starting point, not a limit on the underlying philosophy.",
-      "currentMarkdown": "Astrid is primarily a video editor and timeline, with generation, packs, agent protocols and supporting capabilities. We do not yet offer comparably powerful, extensible image, 3D or writing editors as reusable foundations. Video is an exciting starting point, but not the limit of the ambition. [Packs](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/06-packs/plan.md), [VibeComfy extensibility](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/17-vibecomfy-extensibility/plan.md), [timeline foundations](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/18-timeline-editing/plan.md), [Three.js extraction](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/11-threejs-pack/plan.md) and [liquid workspaces](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/24-liquid-workspace/plan.md) are related implementation directions, not evidence of a flourishing cross-modal ecosystem.",
-      "missingMarkdown": "It is not yet demonstrated that people can establish and share **reusable modality-level foundations** beyond video, or that independent contributors can build on those foundations to create further creative tools. This is broader than [LS-003](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-003-full-stack-contributions.md), which concerns composable frontend/backend extension contracts within a working host; it is also distinct from proving one artist's end-to-end workflow under [AA-001](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/AA-001-sustained-creative-work.md).",
+      "currentMarkdown": "Astrid is primarily a video editor and timeline, with generation, packs, agent protocols and supporting capabilities. We do not yet offer comparably powerful, extensible image, 3D or writing editors as reusable foundations. Video is an exciting starting point, but not the limit of the ambition. [Packs](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/06-packs/plan.md), [VibeComfy extensibility](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/17-vibecomfy-extensibility/plan.md), [timeline foundations](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/18-timeline-editing/plan.md), [Three.js extraction](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/11-threejs-pack/plan.md) and [liquid workspaces](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/24-liquid-workspace/plan.md) are related implementation directions, not evidence of a flourishing cross-modal ecosystem.",
+      "missingMarkdown": "It is not yet demonstrated that people can establish and share **reusable modality-level foundations** beyond video, or that independent contributors can build on those foundations to create further creative tools. This is broader than [LS-003](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-003-full-stack-contributions.md), which concerns composable frontend/backend extension contracts within a working host; it is also distinct from proving one artist's end-to-end workflow under [AA-001](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/AA-001-sustained-creative-work.md).",
       "closureEvidenceMarkdown": "On documented supported setups, creators and agents successfully make real work using video plus at least two non-video modality foundations, with preserved files and project control. At least one non-video foundation is contributed outside the core team, and another independent contributor can build and publish a useful additional capability on top of it without a bespoke core fork. Show actual creative results; discoverability, setup, shared agent/user interfaces, extension and update paths, permissions, recovery and meaningful negative cases; and feedback from creators who use these tools. This demonstrates a reusable cross-modal ecosystem, **not** a claim that every imaginable modality has been completed."
     },
     {
       "id": "LS-005",
       "title": "Agents can't yet reliably create and maintain their own tools",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/LS-005-agent-managed-tools.md",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/LS-005-agent-managed-tools.md",
       "assessment": "open",
       "assessmentDetail": "Open; initial assessment (2026-11-10); not implementation proof.",
       "appliesTo": [
@@ -610,8 +610,8 @@
       ],
       "primaryAppliesTo": "pillar:liquid-software",
       "desiredMarkdown": "An agent can build or adapt a needed tool during creative work, register it with supported interfaces, keep it working as dependencies evolve and make every consequential change inspectable, permissioned and reversible.",
-      "currentMarkdown": "Astrid has packs, agent skills and extension points, and [Plan 06](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/06-packs/plan.md) covers a trusted pack lifecycle. There is not yet reliable proof of an agent creating a tool, testing it against real creative work and maintaining it through later updates.",
-      "missingMarkdown": "Agent-led authoring, verification, registration, compatibility monitoring, repair and rollback are not a unified proven flow. Installing or upgrading someone else's existing pack under [F-004](https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/vision/gaps/F-004-pack-lifecycle.md) does not establish this capability.",
+      "currentMarkdown": "Astrid has packs, agent skills and extension points, and [Plan 06](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/06-packs/plan.md) covers a trusted pack lifecycle. There is not yet reliable proof of an agent creating a tool, testing it against real creative work and maintaining it through later updates.",
+      "missingMarkdown": "Agent-led authoring, verification, registration, compatibility monitoring, repair and rollback are not a unified proven flow. Installing or upgrading someone else's existing pack under [F-004](https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/vision/gaps/F-004-pack-lifecycle.md) does not establish this capability.",
       "closureEvidenceMarkdown": "For a real creative task, an agent creates or adapts a narrow tool, tests it, shows its source and permissions, and requests approval to activate it. On a later breaking dependency change, it proposes a tested repair and can revert safely. Broken, malicious and incompatible cases do not lose work or acquire execution rights."
     }
   ],
@@ -630,7 +630,7 @@
         "F-002"
       ],
       "primaryGapId": "F-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/29-update-and-release/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/29-update-and-release/plan.md"
     },
     {
       "id": "20-zero-to-first-image",
@@ -645,7 +645,7 @@
         "F-003"
       ],
       "primaryGapId": "F-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/20-zero-to-first-image/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/20-zero-to-first-image/plan.md"
     },
     {
       "id": "40-machine-lifetime-controls",
@@ -661,7 +661,7 @@
         "F-008"
       ],
       "primaryGapId": "F-002",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/40-machine-lifetime-controls/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/40-machine-lifetime-controls/plan.md"
     },
     {
       "id": "38-one-process-identity",
@@ -676,7 +676,7 @@
         "F-001"
       ],
       "primaryGapId": "F-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/38-one-process-identity/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/38-one-process-identity/plan.md"
     },
     {
       "id": "31-releases-from-astrid-dev",
@@ -691,7 +691,7 @@
         "F-001"
       ],
       "primaryGapId": "F-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/31-releases-from-astrid-dev/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/31-releases-from-astrid-dev/plan.md"
     },
     {
       "id": "30-update-everywhere",
@@ -706,7 +706,7 @@
         "F-001"
       ],
       "primaryGapId": "F-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/30-update-everywhere/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/30-update-everywhere/plan.md"
     },
     {
       "id": "39-green-mains",
@@ -721,7 +721,7 @@
         "F-001"
       ],
       "primaryGapId": "F-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/39-green-mains/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/39-green-mains/plan.md"
     },
     {
       "id": "34-real-gpu-proof",
@@ -737,7 +737,7 @@
         "F-008"
       ],
       "primaryGapId": "F-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/34-real-gpu-proof/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/34-real-gpu-proof/plan.md"
     },
     {
       "id": "32-generation-placement-targets",
@@ -753,7 +753,7 @@
         "F-003"
       ],
       "primaryGapId": "F-008",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/32-generation-placement-targets/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/32-generation-placement-targets/plan.md"
     },
     {
       "id": "37-generate-time-destination",
@@ -768,7 +768,7 @@
         "F-003"
       ],
       "primaryGapId": "F-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/37-generate-time-destination/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/37-generate-time-destination/plan.md"
     },
     {
       "id": "12-multiple-inference-routes",
@@ -784,7 +784,7 @@
         "F-003"
       ],
       "primaryGapId": "F-008",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/12-multiple-inference-routes/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/12-multiple-inference-routes/plan.md"
     },
     {
       "id": "35-one-home-for-user-state",
@@ -800,7 +800,7 @@
         "F-002"
       ],
       "primaryGapId": "F-005",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/35-one-home-for-user-state/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/35-one-home-for-user-state/plan.md"
     },
     {
       "id": "36-one-credential-path",
@@ -816,7 +816,7 @@
         "F-005"
       ],
       "primaryGapId": "F-002",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/36-one-credential-path/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/36-one-credential-path/plan.md"
     },
     {
       "id": "09-install-and-update-confidence",
@@ -831,7 +831,7 @@
         "F-001"
       ],
       "primaryGapId": "F-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/09-install-and-update-confidence/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/09-install-and-update-confidence/plan.md"
     },
     {
       "id": "10-pinokio-qualification",
@@ -847,7 +847,7 @@
         "F-002"
       ],
       "primaryGapId": "F-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/10-pinokio-qualification/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/10-pinokio-qualification/plan.md"
     },
     {
       "id": "04-concurrent-edits",
@@ -862,7 +862,7 @@
         "F-002"
       ],
       "primaryGapId": "F-002",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/04-concurrent-edits/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/04-concurrent-edits/plan.md"
     },
     {
       "id": "05-remaining-fixes",
@@ -875,7 +875,7 @@
       "priorityOrder": 17,
       "gapIds": [],
       "primaryGapId": null,
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/05-remaining-fixes/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/05-remaining-fixes/plan.md"
     },
     {
       "id": "11-threejs-pack",
@@ -890,7 +890,7 @@
         "F-004"
       ],
       "primaryGapId": "F-004",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/11-threejs-pack/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/11-threejs-pack/plan.md"
     },
     {
       "id": "13-execution-host-refactor",
@@ -903,7 +903,7 @@
       "priorityOrder": 19,
       "gapIds": [],
       "primaryGapId": null,
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/13-execution-host-refactor/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/13-execution-host-refactor/plan.md"
     },
     {
       "id": "14-repository-cleanup",
@@ -916,7 +916,7 @@
       "priorityOrder": 20,
       "gapIds": [],
       "primaryGapId": null,
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/14-repository-cleanup/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/14-repository-cleanup/plan.md"
     },
     {
       "id": "15-openshell-safe-execution",
@@ -932,7 +932,7 @@
         "F-002"
       ],
       "primaryGapId": "F-007",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/15-openshell-safe-execution/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/15-openshell-safe-execution/plan.md"
     },
     {
       "id": "16-streamlined-agent-experience",
@@ -947,7 +947,7 @@
         "F-003"
       ],
       "primaryGapId": "F-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/16-streamlined-agent-experience/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/16-streamlined-agent-experience/plan.md"
     },
     {
       "id": "17-vibecomfy-extensibility",
@@ -963,7 +963,7 @@
         "F-008"
       ],
       "primaryGapId": "LS-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/17-vibecomfy-extensibility/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/17-vibecomfy-extensibility/plan.md"
     },
     {
       "id": "18-timeline-editing",
@@ -978,7 +978,7 @@
         "LS-003"
       ],
       "primaryGapId": "LS-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/18-timeline-editing/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/18-timeline-editing/plan.md"
     },
     {
       "id": "19-first-principles-documentation",
@@ -991,7 +991,7 @@
       "priorityOrder": 25,
       "gapIds": [],
       "primaryGapId": null,
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/19-first-principles-documentation/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/19-first-principles-documentation/plan.md"
     },
     {
       "id": "21-astrid-website",
@@ -1004,7 +1004,7 @@
       "priorityOrder": 26,
       "gapIds": [],
       "primaryGapId": null,
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/21-astrid-website/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/21-astrid-website/plan.md"
     },
     {
       "id": "22-hivemind-protocol",
@@ -1019,7 +1019,7 @@
         "CI-002"
       ],
       "primaryGapId": "CI-002",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/22-hivemind-protocol/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/22-hivemind-protocol/plan.md"
     },
     {
       "id": "23-agent-learning-integration",
@@ -1035,7 +1035,7 @@
         "CI-002"
       ],
       "primaryGapId": "CI-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/23-agent-learning-integration/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/23-agent-learning-integration/plan.md"
     },
     {
       "id": "24-liquid-workspace",
@@ -1050,7 +1050,7 @@
         "LS-001"
       ],
       "primaryGapId": "LS-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/24-liquid-workspace/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/24-liquid-workspace/plan.md"
     },
     {
       "id": "25-cloud-assist-v1",
@@ -1067,7 +1067,7 @@
         "F-002"
       ],
       "primaryGapId": "F-005",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/25-cloud-assist-v1/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/25-cloud-assist-v1/plan.md"
     },
     {
       "id": "26-fully-hosted-v2",
@@ -1084,7 +1084,7 @@
         "F-002"
       ],
       "primaryGapId": "F-006",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/26-fully-hosted-v2/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/26-fully-hosted-v2/plan.md"
     },
     {
       "id": "27-video-render-options",
@@ -1100,7 +1100,7 @@
         "F-002"
       ],
       "primaryGapId": "F-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/27-video-render-options/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/27-video-render-options/plan.md"
     },
     {
       "id": "28-contributor-ownership",
@@ -1115,7 +1115,7 @@
         "CA-002"
       ],
       "primaryGapId": "CA-002",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/28-contributor-ownership/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/28-contributor-ownership/plan.md"
     },
     {
       "id": "49-contribution-discovery",
@@ -1130,7 +1130,7 @@
         "CA-004"
       ],
       "primaryGapId": "CA-004",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/49-contribution-discovery/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/49-contribution-discovery/plan.md"
     },
     {
       "id": "41-agent-managed-tools",
@@ -1145,7 +1145,7 @@
         "LS-005"
       ],
       "primaryGapId": "LS-005",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/41-agent-managed-tools/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/41-agent-managed-tools/plan.md"
     },
     {
       "id": "42-hivemind-public-sources",
@@ -1160,7 +1160,7 @@
         "CI-003"
       ],
       "primaryGapId": "CI-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/42-hivemind-public-sources/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/42-hivemind-public-sources/plan.md"
     },
     {
       "id": "43-nonvideo-editors",
@@ -1175,7 +1175,7 @@
         "LS-004"
       ],
       "primaryGapId": "LS-004",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/43-nonvideo-editors/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/43-nonvideo-editors/plan.md"
     },
     {
       "id": "44-vision-execution-trail",
@@ -1190,7 +1190,7 @@
         "CA-003"
       ],
       "primaryGapId": "CA-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/44-vision-execution-trail/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/44-vision-execution-trail/plan.md"
     },
     {
       "id": "45-component-connections",
@@ -1205,7 +1205,7 @@
         "LS-003"
       ],
       "primaryGapId": "LS-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/45-component-connections/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/45-component-connections/plan.md"
     },
     {
       "id": "46-agent-workspace-operations",
@@ -1220,7 +1220,7 @@
         "LS-002"
       ],
       "primaryGapId": "LS-002",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/46-agent-workspace-operations/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/46-agent-workspace-operations/plan.md"
     },
     {
       "id": "47-pack-stress-tests",
@@ -1235,7 +1235,7 @@
         "F-004"
       ],
       "primaryGapId": "F-004",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/47-pack-stress-tests/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/47-pack-stress-tests/plan.md"
     },
     {
       "id": "48-one-record-model",
@@ -1250,7 +1250,7 @@
         "CA-005"
       ],
       "primaryGapId": "CA-005",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/48-one-record-model/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/48-one-record-model/plan.md"
     },
     {
       "id": "90-proof-a",
@@ -1263,7 +1263,23 @@
       "priorityOrder": 43,
       "gapIds": [],
       "primaryGapId": null,
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/90-proof-a/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/90-proof-a/plan.md"
+    },
+    {
+      "id": "50-recorded-boundaries",
+      "title": "Recorded boundaries and an offline generation harness",
+      "goalMarkdown": "The generation failures we know of at the RunPod and Runtime boundaries are found and named on a CPU without renting a GPU: tests use recorded real RunPod responses, and the CPU journey with the real Runtime injects each failure and checks the product's answer.",
+      "status": "queued",
+      "owner": "Unassigned",
+      "estimate": "about 4–5",
+      "waitingOn": "the owner's scope decision (D1); Release 13's in-flight terminal-reconcile and Runtime inline-proof fixes, which RB-1 needs",
+      "priorityOrder": 44,
+      "gapIds": [
+        "F-008",
+        "F-001"
+      ],
+      "primaryGapId": "F-008",
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/50-recorded-boundaries/plan.md"
     },
     {
       "id": "91-proof-b",
@@ -1273,10 +1289,10 @@
       "owner": "Unassigned",
       "estimate": "TBD",
       "waitingOn": "—",
-      "priorityOrder": 44,
+      "priorityOrder": 45,
       "gapIds": [],
       "primaryGapId": null,
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/91-proof-b/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/91-proof-b/plan.md"
     },
     {
       "id": "33-unblock-live-generation",
@@ -1286,13 +1302,13 @@
       "owner": "@AstridPseudon",
       "estimate": "about 3–4 days plus the live proof",
       "waitingOn": "—",
-      "priorityOrder": 45,
+      "priorityOrder": 46,
       "gapIds": [
         "F-003",
         "F-008"
       ],
       "primaryGapId": "F-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/33-unblock-live-generation/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/33-unblock-live-generation/plan.md"
     },
     {
       "id": "02-consistent-generation",
@@ -1302,12 +1318,12 @@
       "owner": "@AstridPseudon",
       "estimate": "4–5 days after Plan 01 (includes the RunPod dry-run work, the installed-package test and the final rebase), plus a Linux x86_64 environment",
       "waitingOn": "—",
-      "priorityOrder": 46,
+      "priorityOrder": 47,
       "gapIds": [
         "F-003"
       ],
       "primaryGapId": "F-003",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/02-consistent-generation/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/02-consistent-generation/plan.md"
     },
     {
       "id": "06-packs",
@@ -1317,13 +1333,13 @@
       "owner": "@AstridPseudon",
       "estimate": "TBD",
       "waitingOn": "—",
-      "priorityOrder": 47,
+      "priorityOrder": 48,
       "gapIds": [
         "F-004",
         "LS-003"
       ],
       "primaryGapId": "F-004",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/06-packs/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/06-packs/plan.md"
     },
     {
       "id": "07-pinokio",
@@ -1333,12 +1349,12 @@
       "owner": "Release 1 merge coordinator",
       "estimate": "0",
       "waitingOn": "—",
-      "priorityOrder": 48,
+      "priorityOrder": 49,
       "gapIds": [
         "F-001"
       ],
       "primaryGapId": "F-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/07-pinokio/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/07-pinokio/plan.md"
     },
     {
       "id": "08-release1-install-update",
@@ -1348,12 +1364,12 @@
       "owner": "Release 1 merge coordinator",
       "estimate": "0",
       "waitingOn": "—",
-      "priorityOrder": 49,
+      "priorityOrder": 50,
       "gapIds": [
         "F-001"
       ],
       "primaryGapId": "F-001",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/08-release1-install-update/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/08-release1-install-update/plan.md"
     },
     {
       "id": "01-installer-consent",
@@ -1363,12 +1379,12 @@
       "owner": "@AstridPseudon",
       "estimate": "0",
       "waitingOn": "—",
-      "priorityOrder": 50,
+      "priorityOrder": 51,
       "gapIds": [
         "F-002"
       ],
       "primaryGapId": "F-002",
-      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/719fe3f95d86ce55e95983c738272905739e71f4/plans/01-installer-consent/plan.md"
+      "githubUrl": "https://github.com/banodoco/astrid-dev/blob/7d787180521692dc8e74104f57ccd2c85bdc3798/plans/01-installer-consent/plan.md"
     }
   ]
 }
