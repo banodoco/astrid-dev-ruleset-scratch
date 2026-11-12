@@ -46,9 +46,8 @@ def request(method: str, path: str, payload=None):
         with urllib.request.urlopen(req, timeout=20) as response:
             return json.loads(response.read())
     except urllib.error.HTTPError as exc:
-        import sys
-        print(f"DIAG {method} {path} -> {exc.code} {exc.read()[:300]!r} headers={dict(exc.headers)}".replace(os.environ['GH_TOKEN'], '***'), file=sys.stderr)
-        raise
+        # Name the call: "HTTP Error 403: Forbidden" alone cannot be traced.
+        raise urllib.error.HTTPError(exc.url, exc.code, f"{method} {path}: {exc.msg}", exc.hdrs, exc.fp) from exc
 
 
 def changed_files(repo: str, number: int) -> list[dict]:
@@ -61,9 +60,8 @@ def changed_files(repo: str, number: int) -> list[dict]:
     raise ValueError("too many modified files to classify")
 
 
-def ensure_review_label(repo: str, label: str) -> None:
-    """Create one neutral review-queue label if missing. Never grant approval."""
-    import urllib.error
+def ensure_label(repo: str, label: str, color: str, description: str) -> None:
+    """Create one label if missing (a read, then at most a create). Never edits an existing label."""
     path = f"/repos/{repo}/labels/{urllib.parse.quote(label, safe='')}"
     try:
         request("GET", path)
@@ -71,12 +69,14 @@ def ensure_review_label(repo: str, label: str) -> None:
         if exc.code != 404:
             raise
         try:
-            request("POST", f"/repos/{repo}/labels", {
-                "name": label,
-                "color": "d4c5f9",
-                "description": "Submission in review queue; not approved or merged",
-            })
+            request("POST", f"/repos/{repo}/labels",
+                    {"name": label, "color": color, "description": description})
         except urllib.error.HTTPError as conflict:
             if conflict.code != 422:
                 raise
             request("GET", path)
+
+
+def ensure_review_label(repo: str, label: str) -> None:
+    """Create one neutral review-queue label if missing. Never grant approval."""
+    ensure_label(repo, label, "d4c5f9", "Submission in review queue; not approved or merged")

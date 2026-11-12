@@ -1,0 +1,29 @@
+name: Label new issues
+
+# Trusted code from main reads the issue through the API as data and only adds
+# labels: the type from the title's first word, and plan:/gap: labels for IDs
+# under "About" that exist on main. It posts, edits, closes and removes nothing.
+# No issue text reaches a shell: the script reads the event file itself.
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: issue-intake-${{ github.event.issue.number }}
+
+jobs:
+  issue-intake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Add type and plan/gap labels
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/issue_intake.py --event "$GITHUB_EVENT_PATH"
